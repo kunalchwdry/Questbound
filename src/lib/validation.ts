@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { AI_PROVIDERS, type AiProvider } from "./ai-providers";
 import { ATTRIBUTES, CLASS_KEYS, DIFFICULTIES, QUEST_TYPES } from "./game";
 
 const dayString = z
@@ -55,6 +56,29 @@ export const companionSchema = z.object({
     .min(1, "Say something to the Oracle")
     .max(600, "Keep it under 600 characters"),
 });
+
+// ---------------------------------------------------------------------------
+// AI / LLM settings
+// ---------------------------------------------------------------------------
+/** Base URL must be http(s); http is permitted for local/private endpoints. */
+const endpointUrl = z
+  .string()
+  .trim()
+  .max(255)
+  .regex(/^https?:\/\/[^\s/$.?#].*/i, "Enter a valid URL like http://localhost:11434/v1")
+  .transform((s) => s.replace(/\/+$/, ""));
+
+export const aiConfigInputSchema = z.object({
+  provider: z.enum([...AI_PROVIDERS] as [AiProvider, ...AiProvider[]]),
+  model: z.string().trim().max(120).optional().default(""),
+  baseUrl: endpointUrl.or(z.literal("")).optional().default(""),
+  // Write-only. Omitted/empty = keep the stored key; clearKey=true removes it.
+  apiKey: z.string().max(200).optional(),
+  clearKey: z.boolean().optional(),
+  temperature: z.number({ message: "Set a temperature between 0 and 2" }).min(0).max(2),
+  maxTokens: z.number().int().min(16).max(32000),
+});
+export type AiConfigInput = z.output<typeof aiConfigInputSchema>;
 
 export const profilePatchSchema = z
   .object({

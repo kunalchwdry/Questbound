@@ -15,15 +15,17 @@ import { HeroSettings } from "./HeroSettings";
 import { LevelUpOverlay } from "./LevelUpOverlay";
 import { QuestBoard } from "./QuestBoard";
 import { Sanctum } from "./Sanctum";
+import { SettingsHall } from "./SettingsHall";
 import { isQuestDone, useGuild, type LevelUpEvent } from "./useGuild";
 
-type TabKey = "quests" | "sanctum" | "armory" | "chronicle";
+type TabKey = "quests" | "sanctum" | "armory" | "chronicle" | "settings";
 
 const TABS: { key: TabKey; label: string; short: string; icon: string; hotkey: string }[] = [
   { key: "quests", label: "Quest Board", short: "Quests", icon: "📜", hotkey: "1" },
   { key: "sanctum", label: "Sanctum", short: "Sanctum", icon: "🔮", hotkey: "2" },
   { key: "armory", label: "Armory", short: "Armory", icon: "🏪", hotkey: "3" },
-  { key: "chronicle", label: "Chronicle", short: "Chronicle", icon: "📖", hotkey: "4" },
+  { key: "chronicle", label: "Chronicle", short: "Chron", icon: "📖", hotkey: "4" },
+  { key: "settings", label: "Settings", short: "Settings", icon: "⚙️", hotkey: "5" },
 ];
 
 export function GuildApp({ initial }: { initial: Dashboard }) {
@@ -47,6 +49,7 @@ function GuildInner({ initial }: { initial: Dashboard }) {
     sanctum: null,
     armory: null,
     chronicle: null,
+    settings: null,
   });
   const online = useOnline();
 
@@ -228,6 +231,14 @@ function GuildInner({ initial }: { initial: Dashboard }) {
               />
             )}
             {tab === "chronicle" && <Chronicle history={history} profile={profile} />}
+            {tab === "settings" && (
+              <SettingsHall
+                profile={profile}
+                onEditHero={() => setSettingsOpen(true)}
+                onLogout={guild.logout}
+                toast={toast}
+              />
+            )}
           </div>
         </section>
       </main>

@@ -4,6 +4,7 @@ import {
   integer,
   pgEnum,
   pgTable,
+  real,
   serial,
   text,
   timestamp,
@@ -266,7 +267,38 @@ export const companionMessages = pgTable(
   (t) => [index("companion_user_idx").on(t.userId)],
 );
 
+// ---------------------------------------------------------------------------
+// Per-user AI / LLM configuration (Oracle provider overrides)
+// ---------------------------------------------------------------------------
+// One row per hero. The API key is stored AES-256-GCM encrypted (see
+// lib/crypto.ts), never sent to the browser, and never logged. Absence of a
+// row (or provider = "keyless") means "use the server's default ensemble".
+export const aiConfigs = pgTable("ai_configs", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id")
+    .notNull()
+    .unique()
+    .references(() => users.id, { onDelete: "cascade" }),
+  // keyless | local | openai | gemini | anthropic | nvidia | custom
+  provider: varchar("provider", { length: 20 }).notNull().default("keyless"),
+  model: varchar("model", { length: 120 }),
+  baseUrl: varchar("base_url", { length: 255 }),
+  /** AES-256-GCM envelope: v1:iv:tag:ciphertext (base64). Server-only. */
+  apiKeyCipher: text("api_key_cipher"),
+  temperature: real("temperature").notNull().default(0.7),
+  maxTokens: integer("max_tokens").notNull().default(600),
+  lastTestOk: boolean("last_test_ok"),
+  lastTestedAt: timestamp("last_tested_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
 export type UserRow = typeof users.$inferSelect;
+export type AiConfigRow = typeof aiConfigs.$inferSelect;
 export type QuestRow = typeof quests.$inferSelect;
 export type CompletionRow = typeof completions.$inferSelect;
 export type ItemRow = typeof items.$inferSelect;

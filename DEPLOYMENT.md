@@ -25,11 +25,16 @@ a fresh project.
    ```bash
    # uses DATABASE_URL from .env
    npm run db:generate -- --name init
-   # apply the generated SQL through the pooler (psql), e.g.:
-   psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f drizzle/0000_init.sql
+   # apply every migration in order through the pooler (psql), e.g.:
+   for f in drizzle/*.sql; do psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f "$f"; done
    ```
 
-   (For this project all 8 tables were already applied.)
+   (For this project all migrations were already applied.) Schema changes
+   follow the same loop: `db:generate`, then apply the new `drizzle/000x_*.sql`.
+   The per-user AI/LLM settings table (`ai_configs`) is migration `0001`;
+   heroes' custom API keys are stored AES-256-GCM encrypted and require an
+   optional `APP_ENCRYPTION_KEY` (see `.env.example`) — without it a key is
+   derived from other server-side secrets.
 3. **Email confirmation.** Authentication → Sign In / Providers → Email:
    - Turn **"Confirm email" OFF** for instant sign-in (great for demos), or
    - leave it ON; the signup screen then shows a "check your inbox" state.

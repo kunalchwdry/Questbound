@@ -154,6 +154,66 @@ export interface OracleConfig {
   /** 0 = immediate, 1 = after the hedge delay; used only for keyless targets. */
   wave?: 0 | 1;
   maxTokens?: number;
+  temperature?: number;
+}
+
+/** Providers selectable per user in Settings → AI / LLM. */
+export type UserProvider = "local" | "groq" | "openai" | "gemini" | "nvidia" | "custom";
+
+/**
+ * Build a single, explicit Oracle target from a hero's saved configuration.
+ * Every provider speaks the OpenAI-compatible protocol. Local/custom endpoints
+ * may have an empty key and must never be swapped for a cloud provider — callers
+ * pass this straight to runOracle, whose only failure path is the on-device model.
+ */
+export function buildUserTarget(input: {
+  provider: UserProvider;
+  apiKey: string;
+  baseUrl: string;
+  model: string;
+  temperature?: number;
+  maxTokens?: number;
+}): OracleConfig {
+  const baseUrl = input.baseUrl.replace(/\/+$/, "");
+  const common = {
+    apiKey: input.apiKey,
+    baseUrl,
+    model: input.model,
+    temperature: input.temperature,
+    maxTokens: input.maxTokens,
+  };
+  switch (input.provider) {
+    case "openai":
+    case "gemini":
+    case "groq":
+    case "nvidia": {
+      const preset = KEYED_PRESETS[input.provider];
+      return {
+        ...common,
+        provider: input.provider,
+        label: `${preset.label} · ${input.model}`,
+        keyless: false,
+        json: preset.json,
+      };
+    }
+    case "local":
+      return {
+        ...common,
+        provider: "custom",
+        label: `Local · ${input.model}`,
+        keyless: false,
+        json: "prompt",
+      };
+    case "custom":
+    default:
+      return {
+        ...common,
+        provider: "custom",
+        label: `Custom · ${input.model}`,
+        keyless: false,
+        json: "prompt",
+      };
+  }
 }
 
 function envFlag(name: string, defaultValue: boolean): boolean {
@@ -336,6 +396,27 @@ export function gatherInsights(d: Dashboard): Insights {
 const SYNTHETIC_ERROR =
   /reached its budget|budget (?:too low|exhausted)|payment required|rate limit|api key|unauthorized|insufficient credits|service unavailable|no credits/i;
 
+function safeString(value: unknown): string {
+  if (typeof value === "string") return value;
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return "provider error";
+  }
+}
+
+/**
+ * Providers occasionally echo request details in error bodies. Strip anything
+ * that could contain an API key before the message is logged, traced, or shown.
+ */
+export function sanitizeProviderError(text: string): string {
+  return text
+    .replace(/Bearer\s+[A-Za-z0-9._\-]+/gi, "Bearer ***")
+    .replace(/(?:sk|rk|gsk|AIza|nvapi|xai)[-_][A-Za-z0-9._\-]{8,}/g, "***")
+    .replace(/["']?(api[_-]?key|x-api-key|authorization)["']?\s*[:=]\s*["']?[^\s,"'}]+/gi, "$1=***")
+    .slice(0, 160);
+}
+
 async function chat(
   cfg: OracleConfig,
   messages: { role: "system" | "user" | "assistant"; content: string }[],
@@ -349,18 +430,20 @@ async function chat(
   const onAbort = () => controller.abort();
   externalSignal?.addEventListener("abort", onAbort, { once: true });
   try {
+    const temperature = cfg.temperature ?? 0.7;
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (cfg.apiKey) headers.Authorization = `Bearer ${cfg.apiKey}`;
+
     const body: Record<string, unknown> = {
       model: cfg.model,
       messages,
-      temperature: 0.7,
+      temperature,
       max_tokens: cfg.maxTokens ?? 600,
     };
     // Keyless gateways reject (or bill) native JSON mode — ask in the prompt.
     if (cfg.json === "response_format") {
       body.response_format = { type: "json_object" };
     }
-    const headers: Record<string, string> = { "Content-Type": "application/json" };
-    if (cfg.apiKey) headers.Authorization = `Bearer ${cfg.apiKey}`;
 
     const res = await fetch(`${cfg.baseUrl}/chat/completions`, {
       method: "POST",
@@ -370,14 +453,14 @@ async function chat(
     });
     if (!res.ok) {
       const text = await res.text().catch(() => "");
-      throw new Error(`${cfg.label} responded ${res.status}: ${text.slice(0, 160)}`);
+      throw new Error(`${cfg.label} responded ${res.status}: ${sanitizeProviderError(text)}`);
     }
     const data = (await res.json()) as {
       error?: unknown;
       choices?: { message?: { content?: string } }[];
     };
     if (data.error) {
-      throw new Error(`${cfg.label} error: ${typeof data.error === "string" ? data.error : JSON.stringify(data.error).slice(0, 160)}`);
+      throw new Error(`${cfg.label} error: ${sanitizeProviderError(safeString(data.error))}`);
     }
     const content = data.choices?.[0]?.message?.content;
     if (!content) throw new Error("Empty completion");
@@ -431,6 +514,13 @@ export async function runOracle(input: {
   dashboard: Dashboard;
   message: string;
   history: { role: "user" | "oracle"; content: string }[];
+  /**
+   * Explicit target(s) from the hero's saved AI configuration. When given,
+   * the environment's provider chain is bypassed entirely — a configured
+   * local/private endpoint never silently fails over to a third-party cloud.
+   * The on-device model remains the only fallback.
+   */
+  targets?: OracleConfig[] | null;
 }): Promise<OracleResult> {
   const trace: OracleTraceStep[] = [];
   const { dashboard, message } = input;
@@ -469,7 +559,7 @@ export async function runOracle(input: {
     };
   };
 
-  const targets = getOracleTargets();
+  const targets = input.targets ?? getOracleTargets();
   if (targets.length === 0) {
     trace.push({ step: "plan", detail: "Cloud models disabled (AI_PROVIDER=local) → on-device model" });
     return fallback();

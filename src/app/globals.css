@@ -517,7 +517,7 @@ body {
     bottom: 0;
     z-index: 65;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     padding: 0.4rem 0.5rem calc(0.4rem + env(safe-area-inset-bottom));
     background: color-mix(in srgb, var(--bg) 82%, transparent);
     border-top: 1px solid var(--border);

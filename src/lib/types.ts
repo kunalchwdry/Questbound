@@ -184,3 +184,22 @@ export interface QuestInput {
   type: QuestType;
   dueDate?: string | null;
 }
+
+// ---------------------------------------------------------------------------
+// AI / LLM configuration (public, secret-free shape)
+// ---------------------------------------------------------------------------
+export type { AiProvider } from "./ai-providers";
+import type { AiProvider } from "./ai-providers";
+
+export interface AiConfigPublic {
+  provider: AiProvider;
+  label: string;
+  model: string;
+  baseUrl: string;
+  /** true = last connection test passed; false = failed; null = untried. */
+  connected: boolean | null;
+  testedAt: string | null;
+  hasApiKey: boolean;
+  temperature: number;
+  maxTokens: number;
+}

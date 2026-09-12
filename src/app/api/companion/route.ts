@@ -2,6 +2,7 @@ import { asc, desc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { companionMessages } from "@/db/schema";
 import { clientIp, handle, ok, parseBody, rateLimit, requireUser } from "@/lib/api";
+import { aiConfigTarget, getAiConfigRow } from "@/lib/ai-settings";
 import { getDashboard } from "@/lib/dashboard";
 import { runOracle } from "@/lib/oracle";
 import type { CompanionMessage, OracleSuggestion } from "@/lib/types";
@@ -48,7 +49,7 @@ export async function POST(req: Request) {
     rateLimit(`oracle:${user.id}:${clientIp(req)}`, 30, 10 * 60_000);
     const { message } = await parseBody(req, companionSchema);
 
-    const [dashboard, historyRows] = await Promise.all([
+    const [dashboard, historyRows, aiRow] = await Promise.all([
       getDashboard(user.id),
       db
         .select({ role: companionMessages.role, content: companionMessages.content })
@@ -56,6 +57,7 @@ export async function POST(req: Request) {
         .where(eq(companionMessages.userId, user.id))
         .orderBy(asc(companionMessages.createdAt))
         .limit(12),
+      getAiConfigRow(user.id),
     ]);
 
     const result = await runOracle({
@@ -65,6 +67,8 @@ export async function POST(req: Request) {
         role: r.role === "user" ? "user" : "oracle",
         content: r.content,
       })),
+      // Per-user override; null falls back to the environment/keyless ensemble.
+      targets: aiConfigTarget(aiRow),
     });
 
     const [userRow] = await db
@@ -79,7 +83,8 @@ export async function POST(req: Request) {
         content: result.reply,
         emotion: result.emotion,
         suggestions: JSON.stringify(result.suggestions),
-        provider: result.provider,
+        // Column is varchar(60); user-supplied model ids can be long.
+        provider: result.provider.slice(0, 60),
       })
       .returning();
 
