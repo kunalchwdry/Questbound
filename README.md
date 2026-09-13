@@ -17,6 +17,18 @@ Questbound turns real-world tasks into an RPG progression system. Quests pay **X
 
 ---
 
+## Product walkthrough
+
+A **2:36 cinematic tour** in 1080p, with narration, on-screen captions, and fictional demo data.
+
+[![Questbound cinematic walkthrough](docs/media/Questbound-Cover.jpg)](https://github.com/kunalchwdry/Questbound/raw/refs/heads/main/docs/media/Questbound-Cinematic-Walkthrough.mp4)
+
+**[Watch or download the video](https://github.com/kunalchwdry/Questbound/raw/refs/heads/main/docs/media/Questbound-Cinematic-Walkthrough.mp4)** · [English subtitles](docs/media/Questbound-Walkthrough.srt)
+
+The tour covers character growth, creating and completing quests, the Guild Hall, shared adventures, and quiet mode. Signed-in scenes use fictional fixtures, not real user data. The MP4 is approximately 16 MB; depending on your browser, the link may download the file instead of playing it inline.
+
+---
+
 ## Table of contents
 
 1. [Stack](#stack)

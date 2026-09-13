@@ -1,0 +1,159 @@
+1
+00:00:01,200 --> 00:00:04,594
+What if your everyday life felt a little more like an adventure?
+
+2
+00:00:05,417 --> 00:00:09,165
+Welcome to Questbound, a place where small, real-world actions
+
+3
+00:00:09,200 --> 00:00:13,382
+become quests, progress becomes a story, and you are the hero at
+
+4
+00:00:13,417 --> 00:00:14,203
+the heart of it.
+
+5
+00:00:17,200 --> 00:00:18,355
+Begin with your character.
+
+6
+00:00:19,004 --> 00:00:22,361
+Choose a class, then build six attributes through the things you
+
+7
+00:00:22,396 --> 00:00:27,774
+actually do. Reading, movement, creativity, and connection all
+
+8
+00:00:27,809 --> 00:00:31,122
+have a place. Your character sheet brings those different kinds
+
+9
+00:00:31,157 --> 00:00:33,159
+of progress into one view.
+
+10
+00:00:36,450 --> 00:00:38,605
+Next, turn intention into a quest.
+
+11
+00:00:39,124 --> 00:00:43,198
+Give it a clear title. Choose the attribute it trains, and set an
+
+12
+00:00:43,233 --> 00:00:47,828
+honest difficulty. Make it a one-time goal, a daily routine or a
+
+13
+00:00:47,863 --> 00:00:51,561
+repeatable habit. Start with something small enough to do today.
+
+14
+00:00:54,783 --> 00:00:57,286
+Do the work in real life, then seal the quest.
+
+15
+00:00:58,044 --> 00:01:01,792
+Earn experience and gold, see your progress grow, and keep a
+
+16
+00:01:01,827 --> 00:01:03,438
+record of your completed deeds.
+
+17
+00:01:04,544 --> 00:01:07,351
+These rewards are a celebration of showing up.
+
+18
+00:01:07,892 --> 00:01:11,003
+The real achievement is the step you took beyond the screen.
+
+19
+00:01:14,283 --> 00:01:15,960
+And you do not have to travel alone.
+
+20
+00:01:16,870 --> 00:01:20,727
+Enter the Guild Hall to ask a question, share a useful tip, or
+
+21
+00:01:20,762 --> 00:01:24,640
+celebrate a small win. Open a discussion, learn from another
+
+22
+00:01:24,675 --> 00:01:27,873
+adventurer, and recognize an answer that genuinely helps.
+
+23
+00:01:28,349 --> 00:01:30,590
+Contribution matters more than popularity.
+
+24
+00:01:34,325 --> 00:01:36,458
+Find a guild that shares your direction.
+
+25
+00:01:37,434 --> 00:01:40,703
+Explore its members and shared quests, then join a community
+
+26
+00:01:40,738 --> 00:01:45,377
+challenge. Eligible quests completed after enrollment can move a
+
+27
+00:01:45,412 --> 00:01:46,936
+shared objective forward.
+
+28
+00:01:47,868 --> 00:01:51,703
+Many small actions become something bigger without losing sight
+
+29
+00:01:51,738 --> 00:01:52,741
+of your own journey.
+
+30
+00:01:55,867 --> 00:01:59,913
+The Hall of Heroes recognizes progress and helpful contributions.
+
+31
+00:02:00,606 --> 00:02:01,739
+Prefer less competition?
+
+32
+00:02:02,454 --> 00:02:05,962
+Turn on quiet mode. You can also switch off the magical effects
+
+33
+00:02:05,997 --> 00:02:08,326
+whenever you want a calmer experience.
+
+34
+00:02:08,888 --> 00:02:12,614
+Questbound is built around your pace, not the pressure to keep up
+
+35
+00:02:12,649 --> 00:02:13,695
+with everyone else.
+
+36
+00:02:17,700 --> 00:02:20,920
+A candlelit world. A character that grows with you.
+
+37
+00:02:21,200 --> 00:02:24,268
+And a community built around taking the next small step.
+
+38
+00:02:24,765 --> 00:02:27,159
+This walkthrough uses fictional demo data.
+
+39
+00:02:27,417 --> 00:02:29,224
+Your own story is still unwritten.
+
+40
+00:02:29,765 --> 00:02:34,355
+Visit Questbound, create your hero, and begin your next chapter today.
