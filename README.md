@@ -258,7 +258,7 @@ Server implementation lives in `src/lib/ai-settings.ts` (storage, validation, co
 
 ```mermaid
 erDiagram
-  auth_users ||..|| users : "auth.users (Supabase GoTrue)"
+  %% auth_users ||..|| users : "auth.users (Supabase GoTrue)"
   users ||--o{ quests : owns
   users ||--o{ completions : records
   users ||--o{ inventory : holds
@@ -267,6 +267,7 @@ erDiagram
   users ||--|| ai_configs : "LLM settings (1:1)"
   items ||--o{ inventory : "is held as"
   quests |o--o{ completions : "produced (set null on delete)"
+  auth_users ||--o{ completions : "produced (set null on delete)"
 
   users {
     serial id PK
@@ -356,7 +357,7 @@ erDiagram
   }
   ai_configs {
     serial id PK
-    int user_id FK UK "1:1, cascade delete"
+    int user_id FK, UK "1:1, cascade delete"
     varchar provider "keyless|local|groq|gemini|nvidia|openai|custom"
     varchar model
     varchar base_url
