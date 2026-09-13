@@ -31,9 +31,9 @@ export function CharacterSheet({
         : "Complete a quest today to keep it alive.";
 
   return (
-    <div className="panel panel-gilded p-5 sm:p-6">
+    <div className="panel panel-gilded p-5 sm:p-6" data-magic-reveal>
       <div className="flex items-center gap-4">
-        <div className="relative flex-none">
+        <div className="relative flex-none magic-portrait">
           <div
             className="grid h-20 w-20 place-items-center rounded-full p-[3px] transition-[background] duration-700"
             style={{ background: ring }}

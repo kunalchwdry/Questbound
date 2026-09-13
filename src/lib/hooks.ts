@@ -45,7 +45,6 @@ export function useCountUp(target: number, duration = 700): number {
   useEffect(() => {
     if (reduced) {
       fromRef.current = target;
-      setDisplay(target);
       return;
     }
     const from = fromRef.current;
@@ -69,5 +68,5 @@ export function useCountUp(target: number, duration = 700): number {
     };
   }, [target, duration, reduced]);
 
-  return display;
+  return reduced ? target : display;
 }

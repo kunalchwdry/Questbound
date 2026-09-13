@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Cinzel, Nunito_Sans } from "next/font/google";
 import "./globals.css";
+import { MotionPreferences } from "@/components/ui/MotionPreferences";
 
 const display = Cinzel({
   subsets: ["latin"],
@@ -76,7 +77,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Skip to content
         </a>
-        {children}
+        <MotionPreferences>{children}</MotionPreferences>
       </body>
     </html>
   );

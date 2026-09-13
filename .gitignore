@@ -30,3 +30,9 @@ yarn-error.log*
 .vercel
 *.tsbuildinfo
 .env*
+
+# Test bundles and generated browser assets
+**/build/
+playwright-report/
+test-results/
+!/.env.example

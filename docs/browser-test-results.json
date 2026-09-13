@@ -1,0 +1,31 @@
+{
+  "mode": "component fixtures with mocked API; not live authenticated E2E",
+  "testedAt": "2026-09-13T17:25:36.876Z",
+  "checks": [
+    "/community: 1440px rendered without overflow",
+    "/guilds: 1440px rendered without overflow",
+    "/challenges: 1440px rendered without overflow",
+    "/leaderboard: 1440px rendered without overflow",
+    "/heroes/12: 1440px rendered without overflow",
+    "/community: 768px rendered without overflow",
+    "/guilds: 768px rendered without overflow",
+    "/challenges: 768px rendered without overflow",
+    "/leaderboard: 768px rendered without overflow",
+    "/heroes/12: 768px rendered without overflow",
+    "/community: 390px rendered without overflow",
+    "/guilds: 390px rendered without overflow",
+    "/challenges: 390px rendered without overflow",
+    "/leaderboard: 390px rendered without overflow",
+    "/heroes/12: 390px rendered without overflow",
+    "Composer labelled inputs and Escape dismissal",
+    "Discussion expands, nested reply renders, accepted solution highlights",
+    "Guild room deep link renders roster and enrolled quest",
+    "Magical atmosphere runs without intercepting input; scroll entrances attach",
+    "Spell cooldown and no gameplay API request; candlelit embers animate over the original signup artwork and midnight theme, with no castle scene",
+    "Pointer card tilt resets when pointer leaves",
+    "Magic toggle removes particle loop, disables CSS motion and persists across reload",
+    "OS reduced-motion overrides full effects and disables decorative layers",
+    "Reduced-motion page and quiet-mode ranking preference"
+  ],
+  "violations": []
+}

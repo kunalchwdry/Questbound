@@ -40,6 +40,7 @@ export function QuestForm({ open, quest, profile, onClose, onSubmit }: Props) {
 
   useEffect(() => {
     if (!open) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Reset the existing local editor/tutorial when its external open signal changes.
     setTitle(quest?.title ?? "");
     setNotes(quest?.notes ?? "");
     setAttribute(quest?.attribute ?? "intellect");

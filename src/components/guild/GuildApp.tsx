@@ -142,6 +142,12 @@ function GuildInner({ initial }: { initial: Dashboard }) {
 
       <Header profile={profile} onLogout={guild.logout} onNewQuest={() => { setTab("quests"); setNewQuestSignal((s) => s + 1); }} />
 
+      <nav aria-label="Explore the world" className="mx-auto flex max-w-7xl flex-wrap gap-2 px-4 pt-4 sm:px-6 lg:px-8">
+        <Link className="btn btn-ghost" href="/community">🏰 Guild Hall</Link>
+        <Link className="btn btn-ghost" href="/guilds">🛡 Guilds</Link>
+        <Link className="btn btn-ghost" href="/challenges">⚔ Challenges</Link>
+        <Link className="btn btn-ghost" href="/leaderboard">🏆 Heroes</Link>
+      </nav>
       <main
         id="main"
         className="mx-auto grid w-full max-w-7xl gap-6 px-4 pb-28 pt-5 sm:px-6 lg:grid-cols-[360px_minmax(0,1fr)] lg:px-8 lg:pb-24"

@@ -1,0 +1,28 @@
+{
+  "testedAt": "2026-09-13T15:24:00.311Z",
+  "mode": "rollback-only fixtures; no auth accounts created",
+  "passed": 21,
+  "tests": [
+    "Strict schemas reject fabricated XP and reward payloads",
+    "Post/comment ownership and solution permissions enforced",
+    "Helpful toggle and duplicate solution award reputation only once (+5 +15)",
+    "Changing reaction preserves one reaction per hero and target",
+    "Replies cannot target a parent in another post",
+    "Private reports denied to ordinary users",
+    "Blocks prevent both-direction post interactions",
+    "Invite-only guild and owner/moderator boundaries enforced",
+    "Guild discussions unavailable to nonmembers",
+    "Guild contributions require enrollment and matching attribute",
+    "Duplicate and nonexistent completion sources rejected by database",
+    "Quest completion reward is claimable once, only by a contributor",
+    "Streak-day challenge counts one active UTC day per hero",
+    "Unique-hero challenge cannot be farmed by repeat completions",
+    "Leaderboard opt-out removes hero and self rank",
+    "Public profile excludes account and private RPG data",
+    "All feed, guild, inbox, profile and seven ranking queries execute",
+    "RLS limits direct notification reads; browser roles cannot write or truncate app records",
+    "Existing quest engine, duplicate completion guard, level, attributes, achievements and dashboard regression",
+    "Existing inventory purchase/equip, ownership and bounty reward regression",
+    "Persistent per-user posting rate limit survives service calls"
+  ]
+}

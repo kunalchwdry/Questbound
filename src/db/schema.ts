@@ -67,6 +67,9 @@ export const users = pgTable(
     classKey: varchar("class_key", { length: 20 }).notNull().default("knight"),
     timezone: varchar("timezone", { length: 64 }).notNull().default("UTC"),
 
+    leaderboardVisible: boolean("leaderboard_visible").notNull().default(true),
+    leaderboardOptOut: boolean("leaderboard_opt_out").notNull().default(false),
+
     // Progression (all values are only ever mutated server-side)
     xp: integer("xp").notNull().default(0),
     gold: integer("gold").notNull().default(50),
@@ -91,7 +94,7 @@ export const users = pgTable(
       .defaultNow(),
   },
   (t) => [uniqueIndex("users_email_idx").on(t.email)],
-);
+).enableRLS();
 
 // ---------------------------------------------------------------------------
 // Sessions: opaque token (hashed) -> user
@@ -113,7 +116,7 @@ export const sessions = pgTable(
     uniqueIndex("sessions_token_hash_idx").on(t.tokenHash),
     index("sessions_user_idx").on(t.userId),
   ],
-);
+).enableRLS();
 
 // ---------------------------------------------------------------------------
 // Quests: the user's tasks
@@ -142,7 +145,7 @@ export const quests = pgTable(
       .defaultNow(),
   },
   (t) => [index("quests_user_idx").on(t.userId)],
-);
+).enableRLS();
 
 // ---------------------------------------------------------------------------
 // Completions: immutable historical log (the Chronicle)
@@ -172,9 +175,10 @@ export const completions = pgTable(
   },
   (t) => [
     index("completions_user_idx").on(t.userId),
+    index("completions_time_user_idx").on(t.completedAt,t.userId),
     index("completions_quest_day_idx").on(t.questId, t.completedOn),
   ],
-);
+).enableRLS();
 
 // ---------------------------------------------------------------------------
 // Items: the Armory catalogue
@@ -197,7 +201,7 @@ export const items = pgTable(
     sortOrder: integer("sort_order").notNull().default(0),
   },
   (t) => [uniqueIndex("items_slug_idx").on(t.slug)],
-);
+).enableRLS();
 
 // ---------------------------------------------------------------------------
 // Inventory: what each hero owns
@@ -222,7 +226,7 @@ export const inventory = pgTable(
     uniqueIndex("inventory_user_item_idx").on(t.userId, t.itemId),
     index("inventory_user_idx").on(t.userId),
   ],
-);
+).enableRLS();
 
 // ---------------------------------------------------------------------------
 // Check-ins: mood journal (Finch / Daylio style)
@@ -243,7 +247,7 @@ export const checkins = pgTable(
       .defaultNow(),
   },
   (t) => [index("checkins_user_day_idx").on(t.userId, t.day)],
-);
+).enableRLS();
 
 // ---------------------------------------------------------------------------
 // Companion messages: persisted Oracle conversation
@@ -265,7 +269,7 @@ export const companionMessages = pgTable(
       .defaultNow(),
   },
   (t) => [index("companion_user_idx").on(t.userId)],
-);
+).enableRLS();
 
 // ---------------------------------------------------------------------------
 // Per-user AI / LLM configuration (Oracle provider overrides)
@@ -295,7 +299,7 @@ export const aiConfigs = pgTable("ai_configs", {
   updatedAt: timestamp("updated_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
-});
+}).enableRLS();
 
 export type UserRow = typeof users.$inferSelect;
 export type AiConfigRow = typeof aiConfigs.$inferSelect;

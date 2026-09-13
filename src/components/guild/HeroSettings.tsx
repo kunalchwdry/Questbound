@@ -30,6 +30,7 @@ export function HeroSettings({
 
   useEffect(() => {
     if (!open) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Reset the existing local editor/tutorial when its external open signal changes.
     setDisplayName(profile.displayName);
     setClassKey(profile.classKey);
     setError(null);

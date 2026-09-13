@@ -1,0 +1,348 @@
+/* Enchanted-academy motion. Decoration never owns focus or game state. */
+.magic-atmosphere {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 65;
+  overflow: hidden;
+  contain: strict;
+}
+.magic-dust {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.magic-toggle {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 75;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 7px 13px;
+  border: 1px solid #9e8757;
+  border-radius: 24px;
+  background: #1a1629;
+  color: #ffedbf;
+  box-shadow: 0 3px 12px #10241c25;
+  font-family: var(--font-body), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.magic-toggle > span:first-child {
+  font-size: 22px;
+  line-height: 1;
+}
+.magic-toggle:hover:not(:disabled) {
+  background: #2b223c;
+  transform: translateY(-2px);
+}
+.magic-toggle:focus-visible {
+  outline: 3px solid #b38a39;
+  outline-offset: 4px;
+}
+.magic-toggle:disabled {
+  cursor: default;
+  background: #211c2d;
+  color: #eee5ca;
+}
+.magic-ceiling {
+  display: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+html[data-magic="on"] .magic-ceiling {
+  display: block;
+}
+.magic-landing-scene {
+  isolation: isolate;
+}
+.magic-landing-scene > .magic-ceiling {
+  inset: -35px -15px 0;
+  z-index: 2;
+}
+html[data-magic="on"] .magic-awaken {
+  animation: magic-unfurl 0.8s cubic-bezier(0.16, 1, 0.3, 1)
+    var(--magic-delay, 0ms) backwards;
+}
+html[data-magic="on"] .w-hall-banner {
+  isolation: isolate;
+}
+html[data-magic="on"] .w-banner-copy {
+  position: relative;
+  z-index: 3;
+}
+html[data-magic="on"]
+  :is(
+    .w-banner-copy h1,
+    .w-page-intro h1,
+    .w-ranking-intro h1,
+    .w-character-identity h1,
+    #hero-title
+  ) {
+  animation: magic-ink 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+html[data-magic="on"] .w-banner-stamp {
+  animation: magic-stamp 0.9s cubic-bezier(0.2, 0.9, 0.25, 1.2) 0.25s backwards;
+}
+html[data-magic="on"]
+  :is(
+    .w-guild-crest,
+    .w-heraldry,
+    .w-character-portrait > .w-avatar-lg,
+    .magic-portrait
+  ) {
+  animation: magic-portrait-float 6s ease-in-out infinite alternate;
+}
+html[data-magic="on"] .w-character-halo {
+  animation: magic-orbit 60s linear infinite;
+}
+html[data-magic="on"] .w-laurel {
+  animation: magic-coronation 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+html[data-magic="on"] :is(.w-btn-primary, .btn-primary) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform 0.22s,
+    box-shadow 0.25s,
+    background 0.2s;
+}
+html[data-magic="on"] :is(.w-btn-primary, .btn-primary):after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: -60% auto -60% -60%;
+  width: 32%;
+  background: linear-gradient(90deg, transparent, #ffedbb38, transparent);
+  transform: rotate(25deg);
+  transition: left 0.65s ease;
+}
+html[data-magic="on"]
+  :is(.w-btn-primary, .btn-primary):is(:hover, :focus-visible):after {
+  left: 135%;
+}
+html[data-magic="on"]
+  :is(.w-btn-primary, .btn-primary):is(:hover, :focus-visible) {
+  box-shadow:
+    0 3px 0 #75561e,
+    0 0 0 3px #bba36925,
+    0 6px 18px #a3894430;
+}
+html[data-magic="on"] :is(.w-guild-banner, .w-podium-hero, .w-post-featured) {
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s,
+    border-color 0.3s;
+}
+html[data-magic="on"]
+  :is(.w-guild-banner, .w-podium-hero):is(:hover, :focus-visible) {
+  transform: translateY(-7px) rotate(-0.4deg);
+  box-shadow: 5px 12px 0 #00000045;
+  border-color: #a99153;
+}
+html[data-magic="on"] .w-post-featured:hover {
+  transform: translateY(-2px) rotate(-0.15deg);
+  box-shadow: 4px 7px 0 #00000060;
+}
+html[data-magic="on"] .w-post-marker {
+  transition: transform 0.3s;
+}
+html[data-magic="on"] .w-post:hover .w-post-marker {
+  transform: rotate(-8deg) translateY(-3px);
+}
+html[data-magic="on"] .w-meter > span {
+  position: relative;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+html[data-magic="on"] .w-meter > span:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 24px;
+  background: linear-gradient(90deg, transparent, #f3deb788);
+  animation: magic-star 3s ease-in-out infinite alternate;
+}
+html[data-magic="on"] .w-world-nav a {
+  position: relative;
+  transition: color 0.25s;
+}
+html[data-magic="on"] .w-world-nav a > span {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+html[data-magic="on"] .w-world-nav a:is(:hover, :focus-visible) > span {
+  transform: translateY(-3px) rotate(-8deg);
+}
+html[data-magic="on"] .w-solution {
+  animation: magic-solution 0.7s ease-out both;
+}
+html[data-magic="on"] .w-reactions button[aria-pressed="true"] {
+  animation: magic-seal 0.4s cubic-bezier(0.2, 0.8, 0.2, 1.3);
+}
+html[data-magic="on"] [role="dialog"] {
+  transform-origin: 50% 70%;
+}
+html[data-magic-paused="true"] *,
+html[data-magic-paused="true"] *:before,
+html[data-magic-paused="true"] *:after {
+  animation-play-state: paused !important;
+}
+html[data-magic="off"] *,
+html[data-magic="off"] *:before,
+html[data-magic="off"] *:after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+@keyframes magic-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes magic-star {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 0.95;
+  }
+}
+@keyframes magic-unfurl {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+    rotate: -0.35deg;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+  }
+}
+@keyframes magic-ink {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+    translate: 0 9px;
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    translate: 0 0;
+  }
+}
+@keyframes magic-stamp {
+  from {
+    opacity: 0;
+    scale: 1.3;
+    translate: 0 -10px;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+  }
+}
+@keyframes magic-portrait-float {
+  from {
+    translate: 0 0;
+    rotate: -1deg;
+  }
+  to {
+    translate: 0 -6px;
+    rotate: 1deg;
+  }
+}
+@keyframes magic-coronation {
+  from {
+    opacity: 0;
+    scale: 0.8;
+    translate: 0 -10px;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+  }
+}
+@keyframes magic-solution {
+  from {
+    box-shadow:
+      inset 0 0 0 2px #b9a25d,
+      0 0 22px #b5a26530;
+  }
+  to {
+    box-shadow:
+      inset 0 0 0 0 transparent,
+      0 0 0 transparent;
+  }
+}
+@keyframes magic-seal {
+  0% {
+    scale: 0.95;
+  }
+  60% {
+    scale: 1.05;
+  }
+  100% {
+    scale: 1;
+  }
+}
+@media (max-width: 800px) {
+  .magic-toggle {
+    left: auto;
+    right: 12px;
+    bottom: 84px;
+    padding: 7px 10px;
+    min-height: 38px;
+    font-size: 10px;
+  }
+  .magic-toggle > span:first-child {
+    font-size: 19px;
+  }
+}
+@media (max-width: 560px) {
+  .magic-toggle > span:last-child {
+    display: none;
+  }
+  .magic-toggle {
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .magic-atmosphere,
+  .magic-ceiling {
+    display: none !important;
+  }
+  *,
+  *:before,
+  *:after {
+    scroll-behavior: auto !important;
+  }
+  .magic-awaken {
+    opacity: 1 !important;
+    translate: none !important;
+    rotate: none !important;
+  }
+  .magic-toggle {
+    transition: none !important;
+  }
+}

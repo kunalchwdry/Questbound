@@ -1,0 +1,819 @@
+/* Same midnight tokens, gilded panels and artwork as AuthShell. No parallel palette. */
+.world[data-theme="midnight"] {
+  --w-bg: var(--bg);
+  --w-paper: var(--panel-solid);
+  --w-ink: var(--text);
+  --w-muted: var(--muted);
+  --w-line: var(--border);
+  --w-green: var(--gold-2);
+  --w-rust: var(--gold);
+  --w-gold: var(--gold);
+  background: var(--bg);
+  color: var(--text);
+  color-scheme: dark;
+}
+.world .w-masthead {
+  background: rgba(13, 11, 21, 0.8);
+  border-color: var(--border);
+  color: var(--text);
+}
+.world .w-brand,
+.world .w-brand > span {
+  color: var(--gold-2);
+}
+.world .w-brand small,
+.world .w-account-hero small {
+  color: var(--muted);
+}
+.world .w-world-nav {
+  background: rgba(22, 18, 38, 0.8);
+  border-color: var(--border);
+}
+.world .w-world-nav a {
+  color: var(--muted);
+}
+.world .w-world-nav a[aria-current="page"] {
+  color: var(--gold-2);
+  border-bottom-color: var(--gold);
+}
+.world .w-world-nav a:hover {
+  color: var(--gold-2);
+}
+.world :focus-visible {
+  outline-color: var(--gold-2);
+}
+.world .w-breadcrumb,
+.world .w-edition,
+.world .w-nav-note {
+  color: var(--muted);
+}
+.world .w-breadcrumb > span:first-child {
+  color: var(--gold-2);
+}
+.world .w-main {
+  padding-top: 30px;
+}
+.world .w-hall-banner,
+html[data-magic="on"] .world .w-hall-banner {
+  position: relative;
+  display: block;
+  min-height: 410px;
+  padding: 42px 40px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #100d1b;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  box-shadow: 0 20px 55px -25px #000b;
+}
+.world .w-hall-banner:after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(226, 185, 91, 0.12);
+  border-radius: 11px;
+  pointer-events: none;
+  z-index: 4;
+}
+.world .w-hall-artwork {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 72%;
+  background-image: url("/images/hero.jpg");
+  background-size: cover;
+  background-position: 62% 58%;
+  z-index: 0;
+  transform-origin: 75% 60%;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 32%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 32%);
+}
+.world .w-hall-artwork:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #100d1b80, transparent 46%),
+    linear-gradient(0deg, #100d1b90, transparent 42%, #100d1b24);
+}
+.world .w-banner-copy,
+html[data-magic="on"] .world .w-banner-copy {
+  position: relative;
+  z-index: 5;
+  max-width: 48%;
+}
+.world .w-banner-copy h1,
+html[data-magic="on"] .world .w-banner-copy h1 {
+  font-size: clamp(35px, 4vw, 53px);
+  line-height: 1.13;
+  letter-spacing: -1.4px;
+  color: var(--text);
+  margin: 18px 0 20px;
+  text-shadow: 0 2px 18px #0d0b15;
+}
+.world .w-banner-copy h1 > span {
+  color: var(--gold);
+}
+.world .w-banner-copy .w-eyebrow {
+  font-size: 9px;
+  color: var(--gold-2);
+  letter-spacing: 1.7px;
+}
+.world .w-banner-copy > p:not(.w-eyebrow) {
+  font-size: 14px;
+  line-height: 1.85;
+  color: #d1c8b8;
+  max-width: 350px;
+  margin-bottom: 25px;
+}
+.world .w-live-dot {
+  background: var(--gold);
+  box-shadow: 0 0 10px #e2b95b60;
+}
+.world .w-banner-stamp {
+  z-index: 5;
+  color: #f2dfb5;
+  background: rgba(13, 11, 21, 0.55);
+  border-color: rgba(226, 185, 91, 0.4);
+  font-size: 8px;
+  top: 23px;
+  right: 24px;
+  backdrop-filter: blur(4px);
+}
+.world .w-btn {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  box-shadow: 0 3px 0 #080610;
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    border-color 0.2s;
+}
+.world .w-btn:hover:not(:disabled) {
+  background: #302743;
+  border-color: var(--gold);
+}
+.world .w-btn-primary,
+.world .w-banner-copy > .w-btn-primary {
+  background: linear-gradient(180deg, var(--gold-2), var(--gold));
+  color: var(--gold-ink);
+  border-color: #d5ae56;
+  box-shadow: 0 3px 0 #75561e;
+  font-weight: 900;
+}
+.world .w-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #fff0c6, #edcd85);
+  color: var(--gold-ink);
+}
+.world .w-text-btn,
+.world .w-reputation-note a,
+.world .w-aside-guild strong,
+.world .w-character-guild {
+  color: var(--gold-2);
+}
+.world .w-inbox {
+  color: var(--gold-2);
+  border-color: var(--border-strong);
+}
+.world .w-eyebrow,
+.world .w-post-type {
+  color: var(--gold-2);
+}
+.world .w-section-heading h2,
+.world .w-post-title,
+.world .w-hero-link strong,
+.world .w-rank-name h3 {
+  color: var(--text);
+}
+.world .w-post-title:hover {
+  color: var(--gold-2);
+}
+.world .w-search,
+.world .w-sort select {
+  background: rgba(13, 11, 21, 0.65);
+  border-color: var(--border-strong);
+  border-radius: 8px;
+  color: var(--text);
+}
+.world .w-search input {
+  color: var(--text);
+}
+.world input::placeholder,
+.world textarea::placeholder {
+  color: #a59b8c;
+  opacity: 1;
+}
+.world .w-search:focus-within {
+  outline-color: var(--gold);
+}
+.world .w-sort select {
+  color: var(--text);
+}
+.world .w-chip {
+  color: var(--muted);
+  border-radius: 6px;
+}
+.world .w-chip:hover {
+  background: var(--panel-2);
+  color: var(--text);
+}
+.world .w-chip[aria-pressed="true"] {
+  background: #e2b95b;
+  color: #241a05;
+  border-color: #e2b95b;
+}
+.world .w-post {
+  border-color: var(--border);
+}
+.world .w-post-featured {
+  background: rgba(30, 24, 43, 0.92);
+  border-color: rgba(226, 185, 91, 0.26);
+  border-left-color: var(--gold);
+  border-radius: 10px;
+  box-shadow: 0 10px 26px -17px #000b;
+}
+.world .w-post-marker {
+  background: #30233b;
+  color: #dcc9a2;
+}
+.world .w-post-help .w-post-marker {
+  background: #6b492c;
+  color: #fff0c3;
+}
+.world .w-post-excerpt,
+.world .w-hero-link small,
+.world .w-post-stats,
+.world .w-subfilters,
+.world .w-guild-tag {
+  color: #bdb2a1;
+}
+.world .w-solved,
+.world .w-post-solved .w-post-title {
+  color: #90d6ac;
+}
+.world .w-tags button {
+  background: #262035;
+  color: #dccb9f;
+  border: 1px solid rgba(226, 185, 91, 0.14);
+  border-radius: 5px;
+}
+.world .w-save {
+  color: var(--muted);
+}
+.world .w-save[aria-pressed="true"] {
+  color: var(--gold-2);
+}
+.world .w-avatar,
+.world .w-avatar-lg {
+  background: #282039;
+  border-color: #9a7d494d;
+  color: var(--text);
+  box-shadow: inset 0 -3px #08061055;
+}
+.world .w-code {
+  background: linear-gradient(160deg, #221b32, #191522);
+  border-color: var(--border-strong);
+  border-radius: 12px;
+}
+.world .w-code h3 {
+  color: var(--gold-2);
+}
+.world .w-code ol,
+.world .w-code ol span,
+.world .w-code > p:last-child {
+  color: #bdb2a1;
+}
+.world .w-code ol {
+  border-color: var(--border);
+}
+.world .w-code ol span {
+  color: var(--gold);
+}
+.world .w-code:before,
+.world .w-code:after,
+.world .w-ornament {
+  color: var(--gold);
+}
+.world .w-aside-guild {
+  background: #1c1727;
+  border-color: var(--border-strong);
+  border-radius: 12px;
+}
+.world .w-aside-guild h3 {
+  color: var(--text);
+}
+.world .w-aside-guild > span {
+  color: var(--gold);
+}
+.world .w-aside-guild > p:not(.w-eyebrow),
+.world .w-reputation-note p,
+.world .w-footer {
+  color: var(--muted);
+}
+.world .w-footer a {
+  color: var(--gold-2);
+}
+.world .w-empty {
+  background: rgba(26, 22, 41, 0.7);
+  border-color: var(--border-strong);
+  border-radius: 12px;
+}
+.world .w-empty h3 {
+  color: var(--text);
+}
+.world .w-empty p {
+  color: var(--muted);
+}
+.world .w-empty > span {
+  color: var(--gold);
+}
+.world .w-loading > span {
+  background: var(--panel-2);
+}
+.world .w-error,
+.world .w-confirm {
+  background: #301d27;
+  border-color: #b880535e;
+  color: #f2d4b4;
+  border-radius: 8px;
+}
+.world .w-error p {
+  color: #ffc4ae;
+}
+.world .w-form label {
+  color: var(--text);
+}
+.world .w-form input:not([type="checkbox"]),
+.world .w-form textarea,
+.world .w-form select {
+  background: #110e1c;
+  border-color: rgba(226, 185, 91, 0.3);
+  color: var(--text);
+  border-radius: 8px;
+}
+.world .w-form label small,
+.world .w-form-footer > p {
+  color: var(--muted);
+}
+.world .w-form-error {
+  color: var(--danger);
+}
+.world .w-inline-form,
+.world .w-invite-form {
+  background: var(--panel-solid);
+  border-color: var(--border-strong);
+  border-radius: 10px;
+}
+.world .w-tried {
+  background: #211d31;
+  border-color: var(--gold);
+  color: var(--text);
+}
+.world .w-reactions button {
+  background: #282135;
+  border-color: var(--border-strong);
+  color: #dfd1b5;
+  border-radius: 6px;
+}
+.world .w-reactions button[aria-pressed="true"] {
+  background: #3b3022;
+  color: #ffe6a3;
+  border-color: #b29654;
+}
+.world .w-solution {
+  background: #192725;
+  border-color: #63886f !important;
+  border-radius: 10px;
+}
+.world .w-solution-heading {
+  color: #a4e0b7;
+}
+.world .w-comments,
+.world .w-comment,
+.world .w-reply-form {
+  border-color: var(--border);
+}
+.world .w-notice {
+  border-color: var(--border);
+  color: var(--text);
+}
+.world .w-notice p,
+.world .w-reply-to {
+  color: var(--muted);
+}
+.world .w-notice a:not(.w-hero-link) {
+  color: var(--gold-2);
+}
+.world .w-notice.unread {
+  border-left-color: var(--gold);
+}
+.world .w-invitation {
+  background: #292134;
+  border-color: var(--border-strong);
+  color: var(--text);
+  border-radius: 10px;
+}
+.world .w-toast {
+  background: #262033;
+  color: #f8ebce;
+  border-color: #ba9955;
+}
+.world .w-toast.is-error {
+  background: #462326;
+  border-color: #b7756b;
+  color: #ffe5df;
+}
+.world .w-toast > span {
+  color: var(--gold-2);
+}
+.world .w-page-intro,
+.world .w-guild-room-header {
+  border-color: var(--border);
+}
+.world .w-page-intro p:not(.w-eyebrow),
+.world .w-guild-room-header p:not(.w-eyebrow) {
+  color: var(--muted);
+}
+.world .w-heraldry {
+  background: #272037;
+  color: var(--gold);
+}
+.world .w-guild-banner {
+  background: rgba(26, 22, 41, 0.9);
+  border-color: var(--border-strong);
+  border-top-color: var(--gold);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px -16px #000a;
+}
+.world .w-guild-banner > .w-btn {
+  background: var(--panel-2);
+}
+.world .w-guild-banner-top,
+.world .w-guild-banner dt,
+.world .w-guild-banner > p {
+  color: var(--muted);
+}
+.world .w-guild-banner-top b {
+  color: var(--gold-2);
+}
+.world .w-guild-banner dd {
+  color: var(--text);
+}
+.world .w-guild-crest {
+  background: #30243b;
+  border-color: #a58a56;
+  color: var(--gold-2);
+}
+.world .w-guild-footnote p,
+.world .w-roster .w-section-heading > span,
+.world .w-guild-total small {
+  color: var(--muted);
+}
+.world .w-guild-total strong {
+  color: var(--gold-2);
+}
+.world .w-shared-quest {
+  background: rgba(26, 22, 41, 0.94);
+  border-color: var(--border-strong);
+  border-top-color: #a58fcc;
+  border-radius: 10px;
+}
+.world .w-shared-quest.is-completed {
+  background: #24221c;
+  border-top-color: var(--gold);
+}
+.world .w-quest-icon {
+  background: #302541;
+  color: var(--gold-2);
+  border-radius: 8px;
+}
+.world .w-quest-number {
+  color: #c4b8ff;
+}
+.world .w-shared-quest > p,
+.world .w-quest-progress > span,
+.world .w-quest-progress strong > span,
+.world .w-shared-quest-bottom small {
+  color: var(--muted);
+}
+.world .w-quest-rewards {
+  color: var(--gold-2);
+}
+.world .w-shared-quest-bottom p {
+  color: #d5c7ad;
+}
+.world .w-meter {
+  background: #30263f;
+  border-color: #534464;
+  border-radius: 4px;
+}
+.world .w-meter > span {
+  background: linear-gradient(90deg, var(--xp), #c4b8ff);
+  border-right-color: #e1d9ff;
+}
+.world .w-challenge-intro {
+  background: #1b1629;
+  border-color: var(--border-strong);
+  border-radius: 14px;
+}
+.world .w-challenge-art {
+  background: #29223d;
+  border-color: #8c75ac;
+  color: #d8c9ef;
+}
+.world .w-challenge-art > span {
+  color: #d7bee9;
+}
+.world .w-challenge-art > i {
+  color: var(--gold-2);
+}
+.world .w-challenge-guide {
+  background: #1d182a;
+  border-color: var(--border);
+  border-radius: 10px;
+  color: var(--muted);
+}
+.world .w-challenge-guide b {
+  color: var(--gold-2);
+}
+.world .w-fair-play,
+.world .w-ranking-rules p {
+  color: var(--muted);
+}
+.world .w-ranking-intro > p:last-child {
+  color: var(--muted);
+}
+.world .w-laurel {
+  color: var(--gold-2);
+}
+.world .w-ranking-settings {
+  background: #1d182a;
+  color: #d3c8b4;
+  border-color: var(--border);
+  border-radius: 8px;
+}
+.world .w-board-tabs {
+  border-color: var(--border);
+}
+.world .w-board-tabs button {
+  color: var(--muted);
+}
+.world .w-board-tabs button[aria-pressed="true"] {
+  color: var(--gold-2);
+  border-bottom-color: var(--gold);
+}
+.world .w-podium-hero {
+  background: #1c1729;
+  border-color: #655170;
+  border-top-color: #9582b2;
+  border-radius: 10px 10px 0 0;
+}
+.world .w-podium-hero.place-1 {
+  background: #28211e;
+  border-color: #af904c;
+  border-top-color: var(--gold);
+  box-shadow: 0 5px 0 #765c262e;
+}
+.world .w-podium-hero h2,
+.world .w-podium-score {
+  color: var(--text);
+}
+.world .w-podium-rank,
+.world .place-1 .w-podium-rank {
+  color: var(--gold-2);
+}
+.world .w-podium-hero > p,
+.world .w-score-label,
+.world .w-podium-deeds {
+  color: #c2b5a3;
+}
+.world .w-podium-base {
+  background: #241c31;
+  border-color: var(--border);
+  color: #ded0b3;
+}
+.world .place-1 .w-podium-base {
+  background: #392d1f;
+  border-color: #9b7a414f;
+  color: #f1d89e;
+}
+.world .place-1 .w-avatar-lg {
+  background: #3a2d26;
+  border-color: #af9158;
+  box-shadow: inset 0 -7px #130e0e30;
+}
+.world .w-your-rank {
+  background: #242037;
+  border-color: #8d76a858;
+  border-left-color: var(--xp);
+  border-radius: 8px;
+}
+.world .w-your-star {
+  color: var(--gold-2);
+}
+.world .w-your-rank p:not(.w-eyebrow),
+.world .w-rank-movement {
+  color: #cfc2e2;
+}
+.world .w-rank-movement strong {
+  color: #d0befb;
+}
+.world .w-ranking-list-label,
+.world .w-rank-name > p {
+  color: var(--muted);
+}
+.world .w-rank-row {
+  border-color: var(--border);
+  border-radius: 6px;
+}
+.world .w-rank-row:hover,
+.world .w-rank-row:focus-visible,
+.world .w-rank-row.is-you {
+  background: #211a30;
+}
+.world .w-rank-number,
+.world .w-rank-score {
+  color: var(--gold-2);
+}
+.world .w-rank-score span,
+.world .w-rank-details {
+  color: var(--muted);
+}
+.world .w-rank-name h3 small {
+  color: #c6b3ff;
+}
+.world .w-guild-rank {
+  background: #1b1727;
+  border-color: var(--border-strong);
+  border-radius: 10px;
+}
+.world .w-guild-rank.first {
+  background: #28211e;
+  border-color: #9b7a41;
+}
+.world .w-guild-rank p:not(.w-eyebrow),
+.world .w-guild-rank > strong > span {
+  color: var(--muted);
+}
+.world .w-guild-rank > strong {
+  color: var(--gold-2);
+}
+.world .w-character-sheet {
+  background: var(--panel-solid);
+  border-color: var(--border-strong);
+  border-radius: 14px;
+  overflow: clip;
+  box-shadow: 0 20px 50px -22px #000c;
+}
+.world .w-character-banner {
+  background: #15101f;
+  color: var(--gold-2);
+  border-bottom: 1px solid var(--border);
+}
+.world .w-character-banner > span:last-child {
+  color: var(--muted);
+}
+.world .w-character-portrait {
+  background: radial-gradient(ellipse at 50% 15%, #3b2b50, #1b1629);
+  border-color: #85704e70;
+}
+.world .w-character-portrait > .w-avatar-lg {
+  background: #30243d;
+  border-color: #9f7e46;
+  color: var(--text);
+}
+.world .w-character-level {
+  border-color: var(--border-strong);
+  color: var(--gold-2);
+}
+.world .w-character-halo {
+  border-color: #b491545c;
+}
+.world .w-character-identity > p:not(.w-eyebrow),
+.world .w-character-xp {
+  color: var(--muted);
+}
+.world .w-character-xp strong {
+  color: var(--text);
+}
+.world .w-character-deeds {
+  background: #211a2e;
+  border-color: var(--border);
+}
+.world .w-character-deeds > div {
+  border-color: var(--border);
+}
+.world .w-character-deeds > div > span {
+  color: var(--gold-2);
+}
+.world .w-character-deeds strong {
+  color: var(--text);
+}
+.world .w-character-deeds p,
+.world .w-character-attributes p:not(.w-eyebrow),
+.world .w-character-footer p {
+  color: var(--muted);
+}
+.world .w-character-attributes dt {
+  color: #e3d5bb;
+}
+.world .w-character-attributes dd small {
+  color: var(--muted);
+}
+.world .w-character-attributes dl > div,
+.world .w-character-footer {
+  border-color: var(--border);
+}
+@media (max-width: 1100px) {
+  .world .w-hall-banner,
+  html[data-magic="on"] .world .w-hall-banner {
+    padding: 32px;
+    min-height: 400px;
+  }
+  .world .w-banner-copy,
+  html[data-magic="on"] .world .w-banner-copy {
+    max-width: 52%;
+  }
+  .world .w-banner-copy h1,
+  html[data-magic="on"] .world .w-banner-copy h1 {
+    font-size: 42px;
+  }
+}
+@media (max-width: 800px) {
+  .world .w-hall-banner,
+  html[data-magic="on"] .world .w-hall-banner {
+    padding: 32px 26px;
+    min-height: 420px;
+  }
+  .world .w-banner-copy,
+  html[data-magic="on"] .world .w-banner-copy {
+    max-width: 60%;
+  }
+  .world .w-banner-copy h1,
+  html[data-magic="on"] .world .w-banner-copy h1 {
+    font-size: 36px;
+  }
+  .world .w-banner-copy > p:not(.w-eyebrow) {
+    font-size: 13px;
+  }
+  .world .w-hall-artwork {
+    width: 90%;
+    background-position: 65% 50%;
+    opacity: 0.8;
+  }
+}
+@media (max-width: 560px) {
+  .world .w-hall-banner,
+  html[data-magic="on"] .world .w-hall-banner {
+    padding: 28px 24px 230px;
+    min-height: 560px;
+    border-radius: 12px;
+  }
+  .world .w-banner-copy,
+  html[data-magic="on"] .world .w-banner-copy {
+    max-width: 100%;
+  }
+  .world .w-banner-copy h1,
+  html[data-magic="on"] .world .w-banner-copy h1 {
+    font-size: 35px;
+    max-width: 280px;
+  }
+  .world .w-banner-copy > p:not(.w-eyebrow) {
+    font-size: 13px;
+    max-width: 280px;
+  }
+  .world .w-banner-copy .w-eyebrow {
+    font-size: 7px;
+  }
+  .world .w-hall-artwork {
+    inset: auto 0 0;
+    width: 100%;
+    height: 330px;
+    background-position: 55% 70%;
+    opacity: 1;
+    mask-image: linear-gradient(180deg, transparent, #000 38%);
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 38%);
+  }
+  .world .w-hall-artwork:after {
+    background: linear-gradient(0deg, #0d0b15a0, transparent 38%);
+  }
+  .world .w-banner-stamp {
+    top: auto;
+    bottom: 19px;
+    left: 21px;
+    right: auto;
+    font-size: 6px;
+    color: var(--gold-2);
+  }
+  .world .w-code,
+  .world .w-aside-guild {
+    border-radius: 9px;
+  }
+  .world .w-podium-hero h2 {
+    font-size: 14px;
+  }
+  .world .w-post-featured {
+    border-radius: 8px;
+  }
+}

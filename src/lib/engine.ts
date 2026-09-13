@@ -51,6 +51,10 @@ export async function completeQuest(
       .for("update");
     if (!quest) throw new ApiError("Quest not found", 404);
 
+    const [{ recentCount }] = await tx.select({ recentCount: count() }).from(completions)
+      .where(and(eq(completions.userId, userId), gte(completions.completedAt, new Date(Date.now() - 24 * 60 * 60 * 1000))));
+    if (Number(recentCount) >= 40) throw new ApiError("You've logged 40 quests in 24 hours. Rest and return tomorrow; progress is not a race.", 429);
+
     const today = todayInTimeZone(hero.timezone);
 
     if (quest.type === "once" && quest.completedAt) {

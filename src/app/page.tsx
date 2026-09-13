@@ -1,3 +1,5 @@
+import { SpellButton } from "@/components/ui/SpellButton";
+import { EnchantedCeiling } from "@/components/ui/EnchantedEffects";
 import Image from "next/image";
 import Link from "next/link";
 import { getSessionUser } from "@/lib/auth";
@@ -150,6 +152,7 @@ export default async function LandingPage() {
                 </Link>
               )}
             </div>
+            <div className="mt-5"><SpellButton /></div>
             <ul className="mt-8 flex flex-wrap gap-2" aria-label="Highlights">
               {["Non-linear leveling", "6 attributes", "Streak shields", "Critical hits", "Themes & companions"].map(
                 (t) => (
@@ -161,7 +164,8 @@ export default async function LandingPage() {
             </ul>
           </div>
 
-          <div className="relative rise" style={{ animationDelay: "120ms" }}>
+          <div className="relative rise magic-landing-scene" style={{ animationDelay: "120ms" }}>
+            <EnchantedCeiling />
             <div className="panel panel-gilded overflow-hidden p-2">
               <Image
                 src="/images/hero.jpg"

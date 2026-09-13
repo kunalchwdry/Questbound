@@ -16,6 +16,12 @@ export async function PATCH(req: Request, ctx: Ctx) {
     const questId = parseId(id);
     const body = await parseBody(req, questPatchSchema);
 
+    const [existing] = await db.select().from(quests).where(and(eq(quests.id, questId), eq(quests.userId, user.id)));
+    if (!existing) throw new ApiError("Quest not found", 404);
+    if (body.type !== undefined && body.type !== existing.type && existing.timesCompleted > 0) {
+      throw new ApiError("A quest's type is fixed after its first completion. Create a new quest for a different routine.", 409);
+    }
+
     const patch: Partial<typeof quests.$inferInsert> = { updatedAt: new Date() };
     if (body.title !== undefined) patch.title = body.title;
     if (body.notes !== undefined) patch.notes = body.notes ? body.notes : null;
@@ -30,7 +36,7 @@ export async function PATCH(req: Request, ctx: Ctx) {
     const [row] = await db
       .update(quests)
       .set(patch)
-      .where(and(eq(quests.id, questId), eq(quests.userId, user.id)))
+      .where(and(eq(quests.id, questId), eq(quests.userId, user.id), eq(quests.timesCompleted, existing.timesCompleted)))
       .returning();
     if (!row) throw new ApiError("Quest not found", 404);
     return ok({ quest: serializeQuest(row) });

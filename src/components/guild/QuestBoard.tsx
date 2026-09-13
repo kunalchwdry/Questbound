@@ -49,6 +49,7 @@ export function QuestBoard({
 
   useEffect(() => {
     if (openSignal > 0) {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Reset the existing local editor/tutorial when its external open signal changes.
       setEditing(null);
       setFormOpen(true);
     }

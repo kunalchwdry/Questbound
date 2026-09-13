@@ -15,6 +15,20 @@
       "when": 1789247196164,
       "tag": "0001_ai_configs",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789312483728,
+      "tag": "0002_community_baseline",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1789312483729,
+      "tag": "0003_community_security",
+      "breakpoints": true
     }
   ]
 }

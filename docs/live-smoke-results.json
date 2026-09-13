@@ -1,0 +1,20 @@
+{
+  "testedAt": "2026-09-13T15:26:16.246Z",
+  "checks": [
+    "/community: anonymous request redirects to existing login",
+    "/guilds: anonymous request redirects to existing login",
+    "/challenges: anonymous request redirects to existing login",
+    "/leaderboard: anonymous request redirects to existing login",
+    "/heroes/1: anonymous request redirects to existing login",
+    "/guild: anonymous request redirects to existing login",
+    "/api/community/posts: rejects unauthenticated access (401)",
+    "/api/community/inbox: rejects unauthenticated access (401)",
+    "/api/community/leaderboard: rejects unauthenticated access (401)",
+    "/api/quests: rejects unauthenticated access (401)",
+    "/api/dashboard: rejects unauthenticated access (401)",
+    "Cross-origin mutations rejected (403)",
+    "Existing live database health endpoint returns 200",
+    "Existing login page and email/password controls render"
+  ],
+  "notTested": "Successful live Supabase login requires a user-supplied test session. No real accounts were impersonated or created."
+}

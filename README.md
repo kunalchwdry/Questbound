@@ -1,5 +1,8 @@
 # ⚜ Questbound — a Life RPG
 
+> **Community extension (September 2026):** The existing Supabase social schema is now connected to `/community`, `/guilds`, `/challenges`, `/leaderboard` and `/heroes/[id]`. See [implementation, migration and verification notes](docs/COMMUNITY_IMPLEMENTATION.md). Use `npm run db:check` / `npm run db:migrate` for this populated database; destructive `db:push` is guarded off.
+
+
 > Every task is a quest. Every day is a chapter.
 
 Questbound turns real-world tasks into an RPG progression system. Quests pay **XP** and **gold**, six **attributes** level up depending on what you do, **streaks** multiply rewards (and can be protected by shields), gold is spent in the **Armory**, a **weekly boss** absorbs the XP you earn, and an emotion-aware **Oracle** companion sizes your next quest to how you actually feel. Every reward is calculated **on the server inside a database transaction**, so the client can be fast and playful without ever being trusted.

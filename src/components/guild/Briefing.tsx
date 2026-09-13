@@ -45,6 +45,7 @@ export function Briefing({
 
   useEffect(() => {
     if (!open) {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Reset the existing local editor/tutorial when its external open signal changes.
       setStep(0);
       return;
     }

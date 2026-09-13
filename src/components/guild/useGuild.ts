@@ -257,6 +257,7 @@ export function useGuild(initial: Dashboard, options: Options) {
           { method: "POST" },
         );
         applyServer(res.dashboard);
+        window.dispatchEvent(new CustomEvent("questbound:spell", { detail: { x: innerWidth * .6, y: innerHeight * .42, power: 2 } }));
         const { reward, streak, levelUp, flavour } = res.result;
         const o = optionsRef.current;
         o.announce(

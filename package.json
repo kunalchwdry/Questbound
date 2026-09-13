@@ -8,7 +8,11 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "db:generate": "drizzle-kit generate",
-    "db:push": "drizzle-kit push"
+    "db:push": "drizzle-kit push",
+    "db:migrate": "node scripts/migrate-community.mjs --apply",
+    "db:check": "node scripts/migrate-community.mjs --dry-run",
+    "test:community": "tsx scripts/test-community.ts",
+    "test:browser": "node scripts/test-browser.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",
@@ -27,6 +31,8 @@
     "zod": "^4.6.2"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "4.1.17",
     "@types/node": "22.19.15",
     "@types/pg": "8.18.0",
@@ -37,6 +43,7 @@
     "eslint-config-next": "16.2.6",
     "postcss": "8.5.8",
     "tailwindcss": "4.1.17",
+    "tsx": "^4.23.13",
     "typescript": "5.9.3"
   },
   "engines": {

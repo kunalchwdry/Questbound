@@ -1,0 +1,5811 @@
+{
+  "tables": [
+    {
+      "schemaname": "public",
+      "tablename": "community_posts",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "community_comments",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "community_reactions",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "community_tags",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "community_post_tags",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "community_saved_posts",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "guilds",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "guild_members",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "guild_invites",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "guild_quests",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "guild_quest_participants",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "community_challenges",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "community_challenge_participants",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "community_reputation_transactions",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "community_reports",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "user_blocks",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "notifications",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "leaderboard_rank_snapshots",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "community_challenge_contributions",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "guild_quest_contributions",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "items",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "companion_messages",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "completions",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "quests",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "checkins",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "inventory",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "users",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "sessions",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "ai_configs",
+      "rowsecurity": true
+    }
+  ],
+  "columns": [
+    {
+      "table_name": "ai_configs",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "provider",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "model",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "base_url",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "api_key_cipher",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "temperature",
+      "data_type": "real",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "max_tokens",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "last_test_ok",
+      "data_type": "boolean",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "last_tested_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "mood",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "emotion",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "note",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "day",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "column_name": "challenge_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "column_name": "source_completion_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "column_name": "metric_delta",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "column_name": "challenge_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "column_name": "contribution",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "column_name": "reward_claimed",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "column_name": "joined_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "slug",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "title",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "description",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "icon",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "metric",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "target",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "progress",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "reward_xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "reward_gold",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "reward_reputation",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "status",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "starts_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "ends_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "completed_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "created_by",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "post_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "author_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "parent_comment_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "content",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "is_solution",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "depth",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "helpful_count",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "reaction_count",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "edited_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "deleted_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_post_tags",
+      "column_name": "post_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_post_tags",
+      "column_name": "tag_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_post_tags",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "author_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "post_type",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "title",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "content",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "category",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "status",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "is_solved",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "blocked_on",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "tried",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "guild_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "is_pinned",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "comment_count",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "reaction_count",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "save_count",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "view_count",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "helpful_count",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "last_activity_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "edited_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "deleted_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "solved_comment_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reactions",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reactions",
+      "column_name": "post_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reactions",
+      "column_name": "comment_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reactions",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reactions",
+      "column_name": "reaction",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reactions",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "reporter_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "post_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "comment_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "target_user_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "reason",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "details",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "status",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "resolved_by",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "resolved_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "resolution_note",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "delta",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "reason",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "ref_type",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "ref_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "actor_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "dedupe_key",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "note",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_saved_posts",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_saved_posts",
+      "column_name": "post_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_saved_posts",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "reputation",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "helpful_answers",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "solved_problems",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "posts_authored",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "comments_authored",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "tips_authored",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_tags",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_tags",
+      "column_name": "slug",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_tags",
+      "column_name": "label",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_tags",
+      "column_name": "usage_count",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_tags",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "role",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "content",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "emotion",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "suggestions",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "provider",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "quest_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "title",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "attribute",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "difficulty",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "gold",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "crit",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "multiplier_pct",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "streak_after",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "completed_on",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "completed_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "guild_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "inviter_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "invitee_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "role",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "status",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "message",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "responded_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "guild_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "role",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "contribution_xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "weekly_xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "joined_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "guild_quest_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "source_completion_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "units",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "guild_xp_awarded",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "guild_quest_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "contributions",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "guild_xp_awarded",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "personal_xp_awarded",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "reward_claimed",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "joined_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "guild_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "created_by",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "title",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "description",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "icon",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "attribute",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "target",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "progress",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "reward_xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "reward_gold",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "reward_reputation",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "status",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "starts_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "ends_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "completed_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "slug",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "name",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "motto",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "description",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "emblem",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "accent",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "owner_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "visibility",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "join_policy",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "weekly_xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "level",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "member_count",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "max_members",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "inventory",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "inventory",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "inventory",
+      "column_name": "item_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "inventory",
+      "column_name": "quantity",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "inventory",
+      "column_name": "equipped",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "inventory",
+      "column_name": "acquired_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "slug",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "name",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "description",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "category",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "rarity",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "price",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "icon",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "payload",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "items",
+      "column_name": "min_level",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "stackable",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "max_stack",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "sort_order",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "category",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "rank",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "metric_value",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "captured_on",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "kind",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "title",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "body",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "href",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "actor_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "ref_type",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "ref_id",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "dedupe_key",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "read_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "title",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "notes",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "attribute",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "difficulty",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "type",
+      "data_type": "USER-DEFINED",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "due_date",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "completed_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "last_completed_on",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "times_completed",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "token_hash",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "user_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "expires_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_blocks",
+      "column_name": "blocker_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_blocks",
+      "column_name": "blocked_id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_blocks",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "auth_id",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "email",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "password_hash",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "display_name",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "class_key",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "timezone",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "gold",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "streak",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "longest_streak",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "last_active_date",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "boost_charges",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "last_bounty_claim",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "last_boss_claim_week",
+      "data_type": "character varying",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "onboarded_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "strength_xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "intellect_xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "vitality_xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "charisma_xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "discipline_xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "creativity_xp",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "leaderboard_visible",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "leaderboard_opt_out",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    }
+  ],
+  "policies": [],
+  "functions": [
+    {
+      "proname": "rls_auto_enable",
+      "definition": "CREATE OR REPLACE FUNCTION public.rls_auto_enable()\n RETURNS event_trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'pg_catalog'\nAS $function$\nDECLARE\n  cmd record;\nBEGIN\n  FOR cmd IN\n    SELECT *\n    FROM pg_event_trigger_ddl_commands()\n    WHERE command_tag IN ('CREATE TABLE', 'CREATE TABLE AS', 'SELECT INTO')\n      AND object_type IN ('table','partitioned table')\n  LOOP\n     IF cmd.schema_name IS NOT NULL AND cmd.schema_name IN ('public') AND cmd.schema_name NOT IN ('pg_catalog','information_schema') AND cmd.schema_name NOT LIKE 'pg_toast%' AND cmd.schema_name NOT LIKE 'pg_temp%' THEN\n      BEGIN\n        EXECUTE format('alter table if exists %s enable row level security', cmd.object_identity);\n        RAISE LOG 'rls_auto_enable: enabled RLS on %', cmd.object_identity;\n      EXCEPTION\n        WHEN OTHERS THEN\n          RAISE LOG 'rls_auto_enable: failed to enable RLS on %', cmd.object_identity;\n      END;\n     ELSE\n        RAISE LOG 'rls_auto_enable: skip % (either system schema or not in enforced list: %.)', cmd.object_identity, cmd.schema_name;\n     END IF;\n  END LOOP;\nEND;\n$function$\n"
+    }
+  ],
+  "triggers": [],
+  "grants": [
+    {
+      "table_name": "items",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "items",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "items",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "companion_messages",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "companion_messages",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "companion_messages",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "completions",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "completions",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "completions",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "quests",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "quests",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "quests",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "checkins",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "checkins",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "checkins",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "inventory",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "inventory",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "inventory",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "users",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "users",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "users",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "sessions",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "sessions",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "sessions",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "ai_configs",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "ai_configs",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "ai_configs",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "items",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "items",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "items",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "companion_messages",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "companion_messages",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "companion_messages",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "completions",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "completions",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "completions",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "quests",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "quests",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "quests",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "checkins",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "checkins",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "checkins",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "inventory",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "inventory",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "inventory",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "users",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "users",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "users",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "sessions",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "sessions",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "sessions",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "table_name": "ai_configs",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "table_name": "ai_configs",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "table_name": "ai_configs",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER"
+    }
+  ],
+  "enums": [
+    {
+      "typname": "attribute",
+      "enumlabel": "strength"
+    },
+    {
+      "typname": "attribute",
+      "enumlabel": "intellect"
+    },
+    {
+      "typname": "attribute",
+      "enumlabel": "vitality"
+    },
+    {
+      "typname": "attribute",
+      "enumlabel": "charisma"
+    },
+    {
+      "typname": "attribute",
+      "enumlabel": "discipline"
+    },
+    {
+      "typname": "attribute",
+      "enumlabel": "creativity"
+    },
+    {
+      "typname": "challenge_metric",
+      "enumlabel": "sessions"
+    },
+    {
+      "typname": "challenge_metric",
+      "enumlabel": "streak_days"
+    },
+    {
+      "typname": "challenge_metric",
+      "enumlabel": "xp"
+    },
+    {
+      "typname": "challenge_metric",
+      "enumlabel": "members"
+    },
+    {
+      "typname": "challenge_status",
+      "enumlabel": "draft"
+    },
+    {
+      "typname": "challenge_status",
+      "enumlabel": "active"
+    },
+    {
+      "typname": "challenge_status",
+      "enumlabel": "completed"
+    },
+    {
+      "typname": "challenge_status",
+      "enumlabel": "expired"
+    },
+    {
+      "typname": "community_post_status",
+      "enumlabel": "open"
+    },
+    {
+      "typname": "community_post_status",
+      "enumlabel": "solved"
+    },
+    {
+      "typname": "community_post_status",
+      "enumlabel": "closed"
+    },
+    {
+      "typname": "community_post_status",
+      "enumlabel": "archived"
+    },
+    {
+      "typname": "community_post_status",
+      "enumlabel": "removed"
+    },
+    {
+      "typname": "community_post_type",
+      "enumlabel": "help"
+    },
+    {
+      "typname": "community_post_type",
+      "enumlabel": "question"
+    },
+    {
+      "typname": "community_post_type",
+      "enumlabel": "discussion"
+    },
+    {
+      "typname": "community_post_type",
+      "enumlabel": "achievement"
+    },
+    {
+      "typname": "community_post_type",
+      "enumlabel": "tip"
+    },
+    {
+      "typname": "community_post_type",
+      "enumlabel": "goal"
+    },
+    {
+      "typname": "community_post_type",
+      "enumlabel": "challenge"
+    },
+    {
+      "typname": "community_reaction_kind",
+      "enumlabel": "helpful"
+    },
+    {
+      "typname": "community_reaction_kind",
+      "enumlabel": "motivating"
+    },
+    {
+      "typname": "community_reaction_kind",
+      "enumlabel": "encouragement"
+    },
+    {
+      "typname": "community_reaction_kind",
+      "enumlabel": "learned_something"
+    },
+    {
+      "typname": "community_reaction_kind",
+      "enumlabel": "relatable"
+    },
+    {
+      "typname": "difficulty",
+      "enumlabel": "trivial"
+    },
+    {
+      "typname": "difficulty",
+      "enumlabel": "easy"
+    },
+    {
+      "typname": "difficulty",
+      "enumlabel": "medium"
+    },
+    {
+      "typname": "difficulty",
+      "enumlabel": "hard"
+    },
+    {
+      "typname": "difficulty",
+      "enumlabel": "epic"
+    },
+    {
+      "typname": "guild_invite_status",
+      "enumlabel": "pending"
+    },
+    {
+      "typname": "guild_invite_status",
+      "enumlabel": "accepted"
+    },
+    {
+      "typname": "guild_invite_status",
+      "enumlabel": "declined"
+    },
+    {
+      "typname": "guild_invite_status",
+      "enumlabel": "revoked"
+    },
+    {
+      "typname": "guild_quest_status",
+      "enumlabel": "active"
+    },
+    {
+      "typname": "guild_quest_status",
+      "enumlabel": "completed"
+    },
+    {
+      "typname": "guild_quest_status",
+      "enumlabel": "expired"
+    },
+    {
+      "typname": "guild_quest_status",
+      "enumlabel": "cancelled"
+    },
+    {
+      "typname": "guild_role",
+      "enumlabel": "owner"
+    },
+    {
+      "typname": "guild_role",
+      "enumlabel": "moderator"
+    },
+    {
+      "typname": "guild_role",
+      "enumlabel": "member"
+    },
+    {
+      "typname": "guild_visibility",
+      "enumlabel": "public"
+    },
+    {
+      "typname": "guild_visibility",
+      "enumlabel": "invite_only"
+    },
+    {
+      "typname": "item_category",
+      "enumlabel": "title"
+    },
+    {
+      "typname": "item_category",
+      "enumlabel": "theme"
+    },
+    {
+      "typname": "item_category",
+      "enumlabel": "companion"
+    },
+    {
+      "typname": "item_category",
+      "enumlabel": "badge"
+    },
+    {
+      "typname": "item_category",
+      "enumlabel": "consumable"
+    },
+    {
+      "typname": "notification_kind",
+      "enumlabel": "reply"
+    },
+    {
+      "typname": "notification_kind",
+      "enumlabel": "helpful"
+    },
+    {
+      "typname": "notification_kind",
+      "enumlabel": "solved"
+    },
+    {
+      "typname": "notification_kind",
+      "enumlabel": "reputation"
+    },
+    {
+      "typname": "notification_kind",
+      "enumlabel": "leaderboard"
+    },
+    {
+      "typname": "notification_kind",
+      "enumlabel": "guild_quest"
+    },
+    {
+      "typname": "notification_kind",
+      "enumlabel": "guild_member"
+    },
+    {
+      "typname": "notification_kind",
+      "enumlabel": "guild_invite"
+    },
+    {
+      "typname": "notification_kind",
+      "enumlabel": "challenge"
+    },
+    {
+      "typname": "notification_kind",
+      "enumlabel": "achievement"
+    },
+    {
+      "typname": "notification_kind",
+      "enumlabel": "moderation"
+    },
+    {
+      "typname": "quest_type",
+      "enumlabel": "daily"
+    },
+    {
+      "typname": "quest_type",
+      "enumlabel": "habit"
+    },
+    {
+      "typname": "quest_type",
+      "enumlabel": "once"
+    },
+    {
+      "typname": "rarity",
+      "enumlabel": "common"
+    },
+    {
+      "typname": "rarity",
+      "enumlabel": "rare"
+    },
+    {
+      "typname": "rarity",
+      "enumlabel": "epic"
+    },
+    {
+      "typname": "rarity",
+      "enumlabel": "legendary"
+    },
+    {
+      "typname": "report_status",
+      "enumlabel": "open"
+    },
+    {
+      "typname": "report_status",
+      "enumlabel": "reviewing"
+    },
+    {
+      "typname": "report_status",
+      "enumlabel": "resolved"
+    },
+    {
+      "typname": "report_status",
+      "enumlabel": "dismissed"
+    },
+    {
+      "typname": "reputation_reason",
+      "enumlabel": "helpful_answer"
+    },
+    {
+      "typname": "reputation_reason",
+      "enumlabel": "problem_solved"
+    },
+    {
+      "typname": "reputation_reason",
+      "enumlabel": "useful_tip"
+    },
+    {
+      "typname": "reputation_reason",
+      "enumlabel": "guild_contribution"
+    },
+    {
+      "typname": "reputation_reason",
+      "enumlabel": "challenge_contribution"
+    },
+    {
+      "typname": "reputation_reason",
+      "enumlabel": "moderator_contribution"
+    }
+  ],
+  "constraints": [
+    {
+      "table_name": "community_posts",
+      "conname": "community_posts_author_id_fkey",
+      "definition": "FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_posts",
+      "conname": "community_posts_body_len",
+      "definition": "CHECK (((char_length(content) >= 1) AND (char_length(content) <= 20000)))"
+    },
+    {
+      "table_name": "community_posts",
+      "conname": "community_posts_counts_ok",
+      "definition": "CHECK (((comment_count >= 0) AND (reaction_count >= 0) AND (save_count >= 0) AND (view_count >= 0) AND (helpful_count >= 0)))"
+    },
+    {
+      "table_name": "community_posts",
+      "conname": "community_posts_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "community_posts",
+      "conname": "community_posts_solved_comment_fk",
+      "definition": "FOREIGN KEY (solved_comment_id) REFERENCES community_comments(id) ON DELETE SET NULL"
+    },
+    {
+      "table_name": "community_posts",
+      "conname": "community_posts_solved_kind",
+      "definition": "CHECK (((NOT is_solved) OR (post_type = ANY (ARRAY['help'::community_post_type, 'question'::community_post_type]))))"
+    },
+    {
+      "table_name": "community_posts",
+      "conname": "community_posts_title_len",
+      "definition": "CHECK (((char_length((title)::text) >= 4) AND (char_length((title)::text) <= 160)))"
+    },
+    {
+      "table_name": "community_comments",
+      "conname": "community_comments_author_id_fkey",
+      "definition": "FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_comments",
+      "conname": "community_comments_body_len",
+      "definition": "CHECK (((char_length(content) >= 1) AND (char_length(content) <= 8000)))"
+    },
+    {
+      "table_name": "community_comments",
+      "conname": "community_comments_counts_ok",
+      "definition": "CHECK (((helpful_count >= 0) AND (reaction_count >= 0)))"
+    },
+    {
+      "table_name": "community_comments",
+      "conname": "community_comments_depth_ok",
+      "definition": "CHECK (((depth >= 1) AND (depth <= 3)))"
+    },
+    {
+      "table_name": "community_comments",
+      "conname": "community_comments_parent_comment_id_fkey",
+      "definition": "FOREIGN KEY (parent_comment_id) REFERENCES community_comments(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_comments",
+      "conname": "community_comments_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "community_comments",
+      "conname": "community_comments_post_id_fkey",
+      "definition": "FOREIGN KEY (post_id) REFERENCES community_posts(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_reactions",
+      "conname": "community_reactions_comment_id_fkey",
+      "definition": "FOREIGN KEY (comment_id) REFERENCES community_comments(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_reactions",
+      "conname": "community_reactions_one_target",
+      "definition": "CHECK ((((post_id IS NOT NULL) AND (comment_id IS NULL)) OR ((post_id IS NULL) AND (comment_id IS NOT NULL))))"
+    },
+    {
+      "table_name": "community_reactions",
+      "conname": "community_reactions_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "community_reactions",
+      "conname": "community_reactions_post_id_fkey",
+      "definition": "FOREIGN KEY (post_id) REFERENCES community_posts(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_reactions",
+      "conname": "community_reactions_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_tags",
+      "conname": "community_tags_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "community_tags",
+      "conname": "community_tags_slug_unique",
+      "definition": "UNIQUE (slug)"
+    },
+    {
+      "table_name": "community_tags",
+      "conname": "community_tags_usage_nonneg",
+      "definition": "CHECK ((usage_count >= 0))"
+    },
+    {
+      "table_name": "community_post_tags",
+      "conname": "community_post_tags_pkey",
+      "definition": "PRIMARY KEY (post_id, tag_id)"
+    },
+    {
+      "table_name": "community_post_tags",
+      "conname": "community_post_tags_post_id_fkey",
+      "definition": "FOREIGN KEY (post_id) REFERENCES community_posts(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_post_tags",
+      "conname": "community_post_tags_tag_id_fkey",
+      "definition": "FOREIGN KEY (tag_id) REFERENCES community_tags(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_saved_posts",
+      "conname": "community_saved_posts_pkey",
+      "definition": "PRIMARY KEY (user_id, post_id)"
+    },
+    {
+      "table_name": "community_saved_posts",
+      "conname": "community_saved_posts_post_id_fkey",
+      "definition": "FOREIGN KEY (post_id) REFERENCES community_posts(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_saved_posts",
+      "conname": "community_saved_posts_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "guilds",
+      "conname": "guilds_counters_ok",
+      "definition": "CHECK (((xp >= 0) AND (weekly_xp >= 0) AND (member_count >= 0) AND (max_members >= 1)))"
+    },
+    {
+      "table_name": "guilds",
+      "conname": "guilds_join_policy_check",
+      "definition": "CHECK (((join_policy)::text = ANY ((ARRAY['open'::character varying, 'request'::character varying])::text[])))"
+    },
+    {
+      "table_name": "guilds",
+      "conname": "guilds_name_len",
+      "definition": "CHECK (((char_length((name)::text) >= 3) AND (char_length((name)::text) <= 60)))"
+    },
+    {
+      "table_name": "guilds",
+      "conname": "guilds_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "guilds",
+      "conname": "guilds_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "guild_members",
+      "conname": "guild_members_contribution_ok",
+      "definition": "CHECK (((contribution_xp >= 0) AND (weekly_xp >= 0)))"
+    },
+    {
+      "table_name": "guild_members",
+      "conname": "guild_members_guild_id_fkey",
+      "definition": "FOREIGN KEY (guild_id) REFERENCES guilds(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "guild_members",
+      "conname": "guild_members_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "guild_members",
+      "conname": "guild_members_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "guild_invites",
+      "conname": "guild_invites_guild_id_fkey",
+      "definition": "FOREIGN KEY (guild_id) REFERENCES guilds(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "guild_invites",
+      "conname": "guild_invites_invitee_id_fkey",
+      "definition": "FOREIGN KEY (invitee_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "guild_invites",
+      "conname": "guild_invites_inviter_id_fkey",
+      "definition": "FOREIGN KEY (inviter_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "guild_invites",
+      "conname": "guild_invites_no_self",
+      "definition": "CHECK ((inviter_id <> invitee_id))"
+    },
+    {
+      "table_name": "guild_invites",
+      "conname": "guild_invites_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "guild_quests",
+      "conname": "guild_quests_created_by_fkey",
+      "definition": "FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "guild_quests",
+      "conname": "guild_quests_guild_id_fkey",
+      "definition": "FOREIGN KEY (guild_id) REFERENCES guilds(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "guild_quests",
+      "conname": "guild_quests_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "guild_quests",
+      "conname": "guild_quests_progress_ok",
+      "definition": "CHECK (((progress >= 0) AND (progress <= target)))"
+    },
+    {
+      "table_name": "guild_quests",
+      "conname": "guild_quests_reward_gold_check",
+      "definition": "CHECK ((reward_gold >= 0))"
+    },
+    {
+      "table_name": "guild_quests",
+      "conname": "guild_quests_reward_reputation_check",
+      "definition": "CHECK ((reward_reputation >= 0))"
+    },
+    {
+      "table_name": "guild_quests",
+      "conname": "guild_quests_reward_xp_check",
+      "definition": "CHECK ((reward_xp >= 0))"
+    },
+    {
+      "table_name": "guild_quests",
+      "conname": "guild_quests_target_check",
+      "definition": "CHECK (((target >= 1) AND (target <= 1000000)))"
+    },
+    {
+      "table_name": "guild_quests",
+      "conname": "guild_quests_title_len",
+      "definition": "CHECK (((char_length((title)::text) >= 3) AND (char_length((title)::text) <= 120)))"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "conname": "guild_quest_participants_contributions_check",
+      "definition": "CHECK ((contributions >= 0))"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "conname": "guild_quest_participants_guild_quest_id_fkey",
+      "definition": "FOREIGN KEY (guild_quest_id) REFERENCES guild_quests(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "conname": "guild_quest_participants_guild_quest_id_user_id_key",
+      "definition": "UNIQUE (guild_quest_id, user_id)"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "conname": "guild_quest_participants_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "conname": "guild_quest_participants_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_challenges",
+      "conname": "community_challenges_created_by_fkey",
+      "definition": "FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL"
+    },
+    {
+      "table_name": "community_challenges",
+      "conname": "community_challenges_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "community_challenges",
+      "conname": "community_challenges_progress_check",
+      "definition": "CHECK ((progress >= 0))"
+    },
+    {
+      "table_name": "community_challenges",
+      "conname": "community_challenges_reward_gold_check",
+      "definition": "CHECK ((reward_gold >= 0))"
+    },
+    {
+      "table_name": "community_challenges",
+      "conname": "community_challenges_reward_reputation_check",
+      "definition": "CHECK ((reward_reputation >= 0))"
+    },
+    {
+      "table_name": "community_challenges",
+      "conname": "community_challenges_reward_xp_check",
+      "definition": "CHECK ((reward_xp >= 0))"
+    },
+    {
+      "table_name": "community_challenges",
+      "conname": "community_challenges_target_check",
+      "definition": "CHECK (((target >= 1) AND (target <= 100000000)))"
+    },
+    {
+      "table_name": "community_challenges",
+      "conname": "community_challenges_title_len",
+      "definition": "CHECK (((char_length((title)::text) >= 3) AND (char_length((title)::text) <= 120)))"
+    },
+    {
+      "table_name": "community_challenges",
+      "conname": "community_challenges_window",
+      "definition": "CHECK ((ends_at > starts_at))"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "conname": "community_challenge_participants_challenge_id_fkey",
+      "definition": "FOREIGN KEY (challenge_id) REFERENCES community_challenges(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "conname": "community_challenge_participants_challenge_id_user_id_key",
+      "definition": "UNIQUE (challenge_id, user_id)"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "conname": "community_challenge_participants_contribution_check",
+      "definition": "CHECK ((contribution >= 0))"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "conname": "community_challenge_participants_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "conname": "community_challenge_participants_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "conname": "community_reputation_dedupe_unique",
+      "definition": "UNIQUE (dedupe_key)"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "conname": "community_reputation_transactions_actor_id_fkey",
+      "definition": "FOREIGN KEY (actor_id) REFERENCES users(id) ON DELETE SET NULL"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "conname": "community_reputation_transactions_delta_check",
+      "definition": "CHECK ((delta <> 0))"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "conname": "community_reputation_transactions_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "conname": "community_reputation_transactions_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_reports",
+      "conname": "community_reports_comment_id_fkey",
+      "definition": "FOREIGN KEY (comment_id) REFERENCES community_comments(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_reports",
+      "conname": "community_reports_one_target",
+      "definition": "CHECK ((((((post_id IS NOT NULL))::integer + ((comment_id IS NOT NULL))::integer) + ((target_user_id IS NOT NULL))::integer) = 1))"
+    },
+    {
+      "table_name": "community_reports",
+      "conname": "community_reports_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "community_reports",
+      "conname": "community_reports_post_id_fkey",
+      "definition": "FOREIGN KEY (post_id) REFERENCES community_posts(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_reports",
+      "conname": "community_reports_reporter_id_fkey",
+      "definition": "FOREIGN KEY (reporter_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_reports",
+      "conname": "community_reports_resolved_by_fkey",
+      "definition": "FOREIGN KEY (resolved_by) REFERENCES users(id) ON DELETE SET NULL"
+    },
+    {
+      "table_name": "community_reports",
+      "conname": "community_reports_target_user_id_fkey",
+      "definition": "FOREIGN KEY (target_user_id) REFERENCES users(id) ON DELETE SET NULL"
+    },
+    {
+      "table_name": "user_blocks",
+      "conname": "user_blocks_blocked_id_fkey",
+      "definition": "FOREIGN KEY (blocked_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "user_blocks",
+      "conname": "user_blocks_blocker_id_fkey",
+      "definition": "FOREIGN KEY (blocker_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "user_blocks",
+      "conname": "user_blocks_no_self",
+      "definition": "CHECK ((blocker_id <> blocked_id))"
+    },
+    {
+      "table_name": "user_blocks",
+      "conname": "user_blocks_pkey",
+      "definition": "PRIMARY KEY (blocker_id, blocked_id)"
+    },
+    {
+      "table_name": "notifications",
+      "conname": "notifications_actor_id_fkey",
+      "definition": "FOREIGN KEY (actor_id) REFERENCES users(id) ON DELETE SET NULL"
+    },
+    {
+      "table_name": "notifications",
+      "conname": "notifications_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "notifications",
+      "conname": "notifications_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "conname": "leaderboard_rank_snapshots_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "conname": "leaderboard_rank_snapshots_user_id_users_id_fk",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "conname": "community_challenge_contributions_challenge_id_community_challe",
+      "definition": "FOREIGN KEY (challenge_id) REFERENCES community_challenges(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "conname": "community_challenge_contributions_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "conname": "community_challenge_contributions_user_id_users_id_fk",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "conname": "guild_quest_contributions_guild_quest_id_guild_quests_id_fk",
+      "definition": "FOREIGN KEY (guild_quest_id) REFERENCES guild_quests(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "conname": "guild_quest_contributions_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "conname": "guild_quest_contributions_user_id_users_id_fk",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "items",
+      "conname": "items_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "companion_messages",
+      "conname": "companion_messages_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "companion_messages",
+      "conname": "companion_messages_user_id_users_id_fk",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "completions",
+      "conname": "completions_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "completions",
+      "conname": "completions_quest_id_quests_id_fk",
+      "definition": "FOREIGN KEY (quest_id) REFERENCES quests(id) ON DELETE SET NULL"
+    },
+    {
+      "table_name": "completions",
+      "conname": "completions_user_id_users_id_fk",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "quests",
+      "conname": "quests_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "quests",
+      "conname": "quests_user_id_users_id_fk",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "checkins",
+      "conname": "checkins_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "checkins",
+      "conname": "checkins_user_id_users_id_fk",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "inventory",
+      "conname": "inventory_item_id_items_id_fk",
+      "definition": "FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "inventory",
+      "conname": "inventory_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "inventory",
+      "conname": "inventory_user_id_users_id_fk",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "users",
+      "conname": "users_auth_id_unique",
+      "definition": "UNIQUE (auth_id)"
+    },
+    {
+      "table_name": "users",
+      "conname": "users_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "sessions",
+      "conname": "sessions_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "sessions",
+      "conname": "sessions_user_id_users_id_fk",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "ai_configs",
+      "conname": "ai_configs_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "ai_configs",
+      "conname": "ai_configs_user_id_unique",
+      "definition": "UNIQUE (user_id)"
+    },
+    {
+      "table_name": "ai_configs",
+      "conname": "ai_configs_user_id_users_id_fk",
+      "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+    }
+  ],
+  "indexes": [
+    {
+      "tablename": "community_posts",
+      "indexname": "community_posts_pkey",
+      "indexdef": "CREATE UNIQUE INDEX community_posts_pkey ON public.community_posts USING btree (id)"
+    },
+    {
+      "tablename": "community_posts",
+      "indexname": "community_posts_created_idx",
+      "indexdef": "CREATE INDEX community_posts_created_idx ON public.community_posts USING btree (created_at DESC) WHERE (deleted_at IS NULL)"
+    },
+    {
+      "tablename": "community_posts",
+      "indexname": "community_posts_activity_idx",
+      "indexdef": "CREATE INDEX community_posts_activity_idx ON public.community_posts USING btree (last_activity_at DESC) WHERE (deleted_at IS NULL)"
+    },
+    {
+      "tablename": "community_posts",
+      "indexname": "community_posts_author_idx",
+      "indexdef": "CREATE INDEX community_posts_author_idx ON public.community_posts USING btree (author_id, created_at DESC)"
+    },
+    {
+      "tablename": "community_posts",
+      "indexname": "community_posts_type_idx",
+      "indexdef": "CREATE INDEX community_posts_type_idx ON public.community_posts USING btree (post_type, created_at DESC) WHERE (deleted_at IS NULL)"
+    },
+    {
+      "tablename": "community_posts",
+      "indexname": "community_posts_unsolved_idx",
+      "indexdef": "CREATE INDEX community_posts_unsolved_idx ON public.community_posts USING btree (created_at DESC) WHERE ((deleted_at IS NULL) AND (is_solved = false) AND (status = 'open'::community_post_status) AND (post_type = ANY (ARRAY['help'::community_post_type, 'question'::community_post_type])))"
+    },
+    {
+      "tablename": "community_posts",
+      "indexname": "community_posts_guild_idx",
+      "indexdef": "CREATE INDEX community_posts_guild_idx ON public.community_posts USING btree (guild_id, created_at DESC) WHERE (guild_id IS NOT NULL)"
+    },
+    {
+      "tablename": "community_posts",
+      "indexname": "community_posts_search_idx",
+      "indexdef": "CREATE INDEX community_posts_search_idx ON public.community_posts USING gin (to_tsvector('english'::regconfig, (((title)::text || ' '::text) || content)))"
+    },
+    {
+      "tablename": "community_posts",
+      "indexname": "community_posts_solved_comment_idx",
+      "indexdef": "CREATE INDEX community_posts_solved_comment_idx ON public.community_posts USING btree (solved_comment_id) WHERE (solved_comment_id IS NOT NULL)"
+    },
+    {
+      "tablename": "community_comments",
+      "indexname": "community_comments_pkey",
+      "indexdef": "CREATE UNIQUE INDEX community_comments_pkey ON public.community_comments USING btree (id)"
+    },
+    {
+      "tablename": "community_comments",
+      "indexname": "community_comments_post_idx",
+      "indexdef": "CREATE INDEX community_comments_post_idx ON public.community_comments USING btree (post_id, created_at) WHERE (deleted_at IS NULL)"
+    },
+    {
+      "tablename": "community_comments",
+      "indexname": "community_comments_parent_idx",
+      "indexdef": "CREATE INDEX community_comments_parent_idx ON public.community_comments USING btree (parent_comment_id)"
+    },
+    {
+      "tablename": "community_comments",
+      "indexname": "community_comments_author_idx",
+      "indexdef": "CREATE INDEX community_comments_author_idx ON public.community_comments USING btree (author_id, created_at DESC)"
+    },
+    {
+      "tablename": "community_comments",
+      "indexname": "community_comments_solution_idx",
+      "indexdef": "CREATE INDEX community_comments_solution_idx ON public.community_comments USING btree (author_id) WHERE (is_solution = true)"
+    },
+    {
+      "tablename": "community_reactions",
+      "indexname": "community_reactions_pkey",
+      "indexdef": "CREATE UNIQUE INDEX community_reactions_pkey ON public.community_reactions USING btree (id)"
+    },
+    {
+      "tablename": "community_reactions",
+      "indexname": "community_reactions_user_post_idx",
+      "indexdef": "CREATE UNIQUE INDEX community_reactions_user_post_idx ON public.community_reactions USING btree (user_id, post_id) WHERE (post_id IS NOT NULL)"
+    },
+    {
+      "tablename": "community_reactions",
+      "indexname": "community_reactions_user_comment_idx",
+      "indexdef": "CREATE UNIQUE INDEX community_reactions_user_comment_idx ON public.community_reactions USING btree (user_id, comment_id) WHERE (comment_id IS NOT NULL)"
+    },
+    {
+      "tablename": "community_reactions",
+      "indexname": "community_reactions_post_idx",
+      "indexdef": "CREATE INDEX community_reactions_post_idx ON public.community_reactions USING btree (post_id)"
+    },
+    {
+      "tablename": "community_reactions",
+      "indexname": "community_reactions_comment_idx",
+      "indexdef": "CREATE INDEX community_reactions_comment_idx ON public.community_reactions USING btree (comment_id)"
+    },
+    {
+      "tablename": "community_tags",
+      "indexname": "community_tags_pkey",
+      "indexdef": "CREATE UNIQUE INDEX community_tags_pkey ON public.community_tags USING btree (id)"
+    },
+    {
+      "tablename": "community_tags",
+      "indexname": "community_tags_slug_unique",
+      "indexdef": "CREATE UNIQUE INDEX community_tags_slug_unique ON public.community_tags USING btree (slug)"
+    },
+    {
+      "tablename": "community_tags",
+      "indexname": "community_tags_slug_idx",
+      "indexdef": "CREATE UNIQUE INDEX community_tags_slug_idx ON public.community_tags USING btree (slug)"
+    },
+    {
+      "tablename": "community_tags",
+      "indexname": "community_tags_usage_idx",
+      "indexdef": "CREATE INDEX community_tags_usage_idx ON public.community_tags USING btree (usage_count DESC)"
+    },
+    {
+      "tablename": "community_post_tags",
+      "indexname": "community_post_tags_pkey",
+      "indexdef": "CREATE UNIQUE INDEX community_post_tags_pkey ON public.community_post_tags USING btree (post_id, tag_id)"
+    },
+    {
+      "tablename": "community_post_tags",
+      "indexname": "community_post_tags_tag_idx",
+      "indexdef": "CREATE INDEX community_post_tags_tag_idx ON public.community_post_tags USING btree (tag_id, post_id)"
+    },
+    {
+      "tablename": "community_saved_posts",
+      "indexname": "community_saved_posts_pkey",
+      "indexdef": "CREATE UNIQUE INDEX community_saved_posts_pkey ON public.community_saved_posts USING btree (user_id, post_id)"
+    },
+    {
+      "tablename": "community_saved_posts",
+      "indexname": "community_saved_posts_user_idx",
+      "indexdef": "CREATE INDEX community_saved_posts_user_idx ON public.community_saved_posts USING btree (user_id, created_at DESC)"
+    },
+    {
+      "tablename": "guilds",
+      "indexname": "guilds_pkey",
+      "indexdef": "CREATE UNIQUE INDEX guilds_pkey ON public.guilds USING btree (id)"
+    },
+    {
+      "tablename": "guilds",
+      "indexname": "guilds_slug_idx",
+      "indexdef": "CREATE UNIQUE INDEX guilds_slug_idx ON public.guilds USING btree (slug)"
+    },
+    {
+      "tablename": "guilds",
+      "indexname": "guilds_name_lower_idx",
+      "indexdef": "CREATE UNIQUE INDEX guilds_name_lower_idx ON public.guilds USING btree (lower((name)::text))"
+    },
+    {
+      "tablename": "guilds",
+      "indexname": "guilds_xp_idx",
+      "indexdef": "CREATE INDEX guilds_xp_idx ON public.guilds USING btree (xp DESC)"
+    },
+    {
+      "tablename": "guilds",
+      "indexname": "guilds_weekly_xp_idx",
+      "indexdef": "CREATE INDEX guilds_weekly_xp_idx ON public.guilds USING btree (weekly_xp DESC)"
+    },
+    {
+      "tablename": "guild_members",
+      "indexname": "guild_members_pkey",
+      "indexdef": "CREATE UNIQUE INDEX guild_members_pkey ON public.guild_members USING btree (id)"
+    },
+    {
+      "tablename": "guild_members",
+      "indexname": "guild_members_user_idx",
+      "indexdef": "CREATE UNIQUE INDEX guild_members_user_idx ON public.guild_members USING btree (user_id)"
+    },
+    {
+      "tablename": "guild_members",
+      "indexname": "guild_members_guild_user_idx",
+      "indexdef": "CREATE UNIQUE INDEX guild_members_guild_user_idx ON public.guild_members USING btree (guild_id, user_id)"
+    },
+    {
+      "tablename": "guild_members",
+      "indexname": "guild_members_roster_idx",
+      "indexdef": "CREATE INDEX guild_members_roster_idx ON public.guild_members USING btree (guild_id, contribution_xp DESC)"
+    },
+    {
+      "tablename": "guild_members",
+      "indexname": "guild_members_guild_role_idx",
+      "indexdef": "CREATE INDEX guild_members_guild_role_idx ON public.guild_members USING btree (guild_id, role)"
+    },
+    {
+      "tablename": "guild_invites",
+      "indexname": "guild_invites_pkey",
+      "indexdef": "CREATE UNIQUE INDEX guild_invites_pkey ON public.guild_invites USING btree (id)"
+    },
+    {
+      "tablename": "guild_invites",
+      "indexname": "guild_invites_pending_idx",
+      "indexdef": "CREATE UNIQUE INDEX guild_invites_pending_idx ON public.guild_invites USING btree (guild_id, invitee_id) WHERE (status = 'pending'::guild_invite_status)"
+    },
+    {
+      "tablename": "guild_invites",
+      "indexname": "guild_invites_invitee_idx",
+      "indexdef": "CREATE INDEX guild_invites_invitee_idx ON public.guild_invites USING btree (invitee_id, status)"
+    },
+    {
+      "tablename": "guild_quests",
+      "indexname": "guild_quests_pkey",
+      "indexdef": "CREATE UNIQUE INDEX guild_quests_pkey ON public.guild_quests USING btree (id)"
+    },
+    {
+      "tablename": "guild_quests",
+      "indexname": "guild_quests_guild_status_idx",
+      "indexdef": "CREATE INDEX guild_quests_guild_status_idx ON public.guild_quests USING btree (guild_id, status, ends_at)"
+    },
+    {
+      "tablename": "guild_quests",
+      "indexname": "guild_quests_active_idx",
+      "indexdef": "CREATE INDEX guild_quests_active_idx ON public.guild_quests USING btree (status, ends_at) WHERE (status = 'active'::guild_quest_status)"
+    },
+    {
+      "tablename": "guild_quest_participants",
+      "indexname": "guild_quest_participants_pkey",
+      "indexdef": "CREATE UNIQUE INDEX guild_quest_participants_pkey ON public.guild_quest_participants USING btree (id)"
+    },
+    {
+      "tablename": "guild_quest_participants",
+      "indexname": "guild_quest_participants_guild_quest_id_user_id_key",
+      "indexdef": "CREATE UNIQUE INDEX guild_quest_participants_guild_quest_id_user_id_key ON public.guild_quest_participants USING btree (guild_quest_id, user_id)"
+    },
+    {
+      "tablename": "guild_quest_participants",
+      "indexname": "guild_quest_participants_board_idx",
+      "indexdef": "CREATE INDEX guild_quest_participants_board_idx ON public.guild_quest_participants USING btree (guild_quest_id, contributions DESC)"
+    },
+    {
+      "tablename": "community_challenges",
+      "indexname": "community_challenges_pkey",
+      "indexdef": "CREATE UNIQUE INDEX community_challenges_pkey ON public.community_challenges USING btree (id)"
+    },
+    {
+      "tablename": "community_challenges",
+      "indexname": "community_challenges_slug_idx",
+      "indexdef": "CREATE UNIQUE INDEX community_challenges_slug_idx ON public.community_challenges USING btree (slug)"
+    },
+    {
+      "tablename": "community_challenges",
+      "indexname": "community_challenges_active_idx",
+      "indexdef": "CREATE INDEX community_challenges_active_idx ON public.community_challenges USING btree (status, ends_at)"
+    },
+    {
+      "tablename": "community_challenge_participants",
+      "indexname": "community_challenge_participants_pkey",
+      "indexdef": "CREATE UNIQUE INDEX community_challenge_participants_pkey ON public.community_challenge_participants USING btree (id)"
+    },
+    {
+      "tablename": "community_challenge_participants",
+      "indexname": "community_challenge_participants_challenge_id_user_id_key",
+      "indexdef": "CREATE UNIQUE INDEX community_challenge_participants_challenge_id_user_id_key ON public.community_challenge_participants USING btree (challenge_id, user_id)"
+    },
+    {
+      "tablename": "community_challenge_participants",
+      "indexname": "community_challenge_participants_idx",
+      "indexdef": "CREATE INDEX community_challenge_participants_idx ON public.community_challenge_participants USING btree (challenge_id, contribution DESC)"
+    },
+    {
+      "tablename": "community_reputation_transactions",
+      "indexname": "community_reputation_transactions_pkey",
+      "indexdef": "CREATE UNIQUE INDEX community_reputation_transactions_pkey ON public.community_reputation_transactions USING btree (id)"
+    },
+    {
+      "tablename": "community_reputation_transactions",
+      "indexname": "community_reputation_dedupe_unique",
+      "indexdef": "CREATE UNIQUE INDEX community_reputation_dedupe_unique ON public.community_reputation_transactions USING btree (dedupe_key)"
+    },
+    {
+      "tablename": "community_reputation_transactions",
+      "indexname": "community_reputation_user_idx",
+      "indexdef": "CREATE INDEX community_reputation_user_idx ON public.community_reputation_transactions USING btree (user_id, created_at DESC)"
+    },
+    {
+      "tablename": "community_reputation_transactions",
+      "indexname": "community_reputation_reason_day_idx",
+      "indexdef": "CREATE INDEX community_reputation_reason_day_idx ON public.community_reputation_transactions USING btree (user_id, reason, created_at DESC)"
+    },
+    {
+      "tablename": "community_reports",
+      "indexname": "community_reports_pkey",
+      "indexdef": "CREATE UNIQUE INDEX community_reports_pkey ON public.community_reports USING btree (id)"
+    },
+    {
+      "tablename": "community_reports",
+      "indexname": "community_reports_dedupe_idx",
+      "indexdef": "CREATE UNIQUE INDEX community_reports_dedupe_idx ON public.community_reports USING btree (reporter_id, COALESCE(post_id, 0), COALESCE(comment_id, 0), COALESCE(target_user_id, 0)) WHERE (status = ANY (ARRAY['open'::report_status, 'reviewing'::report_status]))"
+    },
+    {
+      "tablename": "community_reports",
+      "indexname": "community_reports_open_idx",
+      "indexdef": "CREATE INDEX community_reports_open_idx ON public.community_reports USING btree (status, created_at DESC)"
+    },
+    {
+      "tablename": "user_blocks",
+      "indexname": "user_blocks_pkey",
+      "indexdef": "CREATE UNIQUE INDEX user_blocks_pkey ON public.user_blocks USING btree (blocker_id, blocked_id)"
+    },
+    {
+      "tablename": "user_blocks",
+      "indexname": "user_blocks_blocked_idx",
+      "indexdef": "CREATE INDEX user_blocks_blocked_idx ON public.user_blocks USING btree (blocked_id)"
+    },
+    {
+      "tablename": "notifications",
+      "indexname": "notifications_pkey",
+      "indexdef": "CREATE UNIQUE INDEX notifications_pkey ON public.notifications USING btree (id)"
+    },
+    {
+      "tablename": "notifications",
+      "indexname": "notifications_inbox_idx",
+      "indexdef": "CREATE INDEX notifications_inbox_idx ON public.notifications USING btree (user_id, created_at DESC)"
+    },
+    {
+      "tablename": "notifications",
+      "indexname": "notifications_unread_idx",
+      "indexdef": "CREATE INDEX notifications_unread_idx ON public.notifications USING btree (user_id) WHERE (read_at IS NULL)"
+    },
+    {
+      "tablename": "notifications",
+      "indexname": "notifications_dedupe_idx",
+      "indexdef": "CREATE UNIQUE INDEX notifications_dedupe_idx ON public.notifications USING btree (dedupe_key)"
+    },
+    {
+      "tablename": "leaderboard_rank_snapshots",
+      "indexname": "leaderboard_rank_snapshots_pkey",
+      "indexdef": "CREATE UNIQUE INDEX leaderboard_rank_snapshots_pkey ON public.leaderboard_rank_snapshots USING btree (id)"
+    },
+    {
+      "tablename": "leaderboard_rank_snapshots",
+      "indexname": "leaderboard_rank_snapshots_unique",
+      "indexdef": "CREATE UNIQUE INDEX leaderboard_rank_snapshots_unique ON public.leaderboard_rank_snapshots USING btree (category, user_id, captured_on)"
+    },
+    {
+      "tablename": "leaderboard_rank_snapshots",
+      "indexname": "leaderboard_rank_snapshots_lookup_idx",
+      "indexdef": "CREATE INDEX leaderboard_rank_snapshots_lookup_idx ON public.leaderboard_rank_snapshots USING btree (category, captured_on)"
+    },
+    {
+      "tablename": "community_challenge_contributions",
+      "indexname": "community_challenge_contributions_pkey",
+      "indexdef": "CREATE UNIQUE INDEX community_challenge_contributions_pkey ON public.community_challenge_contributions USING btree (id)"
+    },
+    {
+      "tablename": "community_challenge_contributions",
+      "indexname": "challenge_contributions_unique",
+      "indexdef": "CREATE UNIQUE INDEX challenge_contributions_unique ON public.community_challenge_contributions USING btree (challenge_id, source_completion_id)"
+    },
+    {
+      "tablename": "community_challenge_contributions",
+      "indexname": "challenge_contributions_board_idx",
+      "indexdef": "CREATE INDEX challenge_contributions_board_idx ON public.community_challenge_contributions USING btree (challenge_id, user_id)"
+    },
+    {
+      "tablename": "guild_quest_contributions",
+      "indexname": "guild_quest_contributions_pkey",
+      "indexdef": "CREATE UNIQUE INDEX guild_quest_contributions_pkey ON public.guild_quest_contributions USING btree (id)"
+    },
+    {
+      "tablename": "guild_quest_contributions",
+      "indexname": "guild_quest_contributions_source_unique",
+      "indexdef": "CREATE UNIQUE INDEX guild_quest_contributions_source_unique ON public.guild_quest_contributions USING btree (source_completion_id)"
+    },
+    {
+      "tablename": "guild_quest_contributions",
+      "indexname": "guild_quest_contributions_quest_idx",
+      "indexdef": "CREATE INDEX guild_quest_contributions_quest_idx ON public.guild_quest_contributions USING btree (guild_quest_id, created_at)"
+    },
+    {
+      "tablename": "items",
+      "indexname": "items_pkey",
+      "indexdef": "CREATE UNIQUE INDEX items_pkey ON public.items USING btree (id)"
+    },
+    {
+      "tablename": "items",
+      "indexname": "items_slug_idx",
+      "indexdef": "CREATE UNIQUE INDEX items_slug_idx ON public.items USING btree (slug)"
+    },
+    {
+      "tablename": "companion_messages",
+      "indexname": "companion_messages_pkey",
+      "indexdef": "CREATE UNIQUE INDEX companion_messages_pkey ON public.companion_messages USING btree (id)"
+    },
+    {
+      "tablename": "companion_messages",
+      "indexname": "companion_user_idx",
+      "indexdef": "CREATE INDEX companion_user_idx ON public.companion_messages USING btree (user_id)"
+    },
+    {
+      "tablename": "completions",
+      "indexname": "completions_pkey",
+      "indexdef": "CREATE UNIQUE INDEX completions_pkey ON public.completions USING btree (id)"
+    },
+    {
+      "tablename": "completions",
+      "indexname": "completions_user_idx",
+      "indexdef": "CREATE INDEX completions_user_idx ON public.completions USING btree (user_id)"
+    },
+    {
+      "tablename": "completions",
+      "indexname": "completions_quest_day_idx",
+      "indexdef": "CREATE INDEX completions_quest_day_idx ON public.completions USING btree (quest_id, completed_on)"
+    },
+    {
+      "tablename": "completions",
+      "indexname": "completions_day_idx",
+      "indexdef": "CREATE INDEX completions_day_idx ON public.completions USING btree (completed_on)"
+    },
+    {
+      "tablename": "completions",
+      "indexname": "completions_completed_on_idx",
+      "indexdef": "CREATE INDEX completions_completed_on_idx ON public.completions USING btree (completed_on)"
+    },
+    {
+      "tablename": "quests",
+      "indexname": "quests_pkey",
+      "indexdef": "CREATE UNIQUE INDEX quests_pkey ON public.quests USING btree (id)"
+    },
+    {
+      "tablename": "quests",
+      "indexname": "quests_user_idx",
+      "indexdef": "CREATE INDEX quests_user_idx ON public.quests USING btree (user_id)"
+    },
+    {
+      "tablename": "checkins",
+      "indexname": "checkins_pkey",
+      "indexdef": "CREATE UNIQUE INDEX checkins_pkey ON public.checkins USING btree (id)"
+    },
+    {
+      "tablename": "checkins",
+      "indexname": "checkins_user_day_idx",
+      "indexdef": "CREATE INDEX checkins_user_day_idx ON public.checkins USING btree (user_id, day)"
+    },
+    {
+      "tablename": "inventory",
+      "indexname": "inventory_pkey",
+      "indexdef": "CREATE UNIQUE INDEX inventory_pkey ON public.inventory USING btree (id)"
+    },
+    {
+      "tablename": "inventory",
+      "indexname": "inventory_user_item_idx",
+      "indexdef": "CREATE UNIQUE INDEX inventory_user_item_idx ON public.inventory USING btree (user_id, item_id)"
+    },
+    {
+      "tablename": "inventory",
+      "indexname": "inventory_user_idx",
+      "indexdef": "CREATE INDEX inventory_user_idx ON public.inventory USING btree (user_id)"
+    },
+    {
+      "tablename": "users",
+      "indexname": "users_pkey",
+      "indexdef": "CREATE UNIQUE INDEX users_pkey ON public.users USING btree (id)"
+    },
+    {
+      "tablename": "users",
+      "indexname": "users_auth_id_unique",
+      "indexdef": "CREATE UNIQUE INDEX users_auth_id_unique ON public.users USING btree (auth_id)"
+    },
+    {
+      "tablename": "users",
+      "indexname": "users_email_idx",
+      "indexdef": "CREATE UNIQUE INDEX users_email_idx ON public.users USING btree (email)"
+    },
+    {
+      "tablename": "users",
+      "indexname": "users_onboarded_idx",
+      "indexdef": "CREATE INDEX users_onboarded_idx ON public.users USING btree (onboarded_at)"
+    },
+    {
+      "tablename": "sessions",
+      "indexname": "sessions_pkey",
+      "indexdef": "CREATE UNIQUE INDEX sessions_pkey ON public.sessions USING btree (id)"
+    },
+    {
+      "tablename": "sessions",
+      "indexname": "sessions_token_hash_idx",
+      "indexdef": "CREATE UNIQUE INDEX sessions_token_hash_idx ON public.sessions USING btree (token_hash)"
+    },
+    {
+      "tablename": "sessions",
+      "indexname": "sessions_user_idx",
+      "indexdef": "CREATE INDEX sessions_user_idx ON public.sessions USING btree (user_id)"
+    },
+    {
+      "tablename": "ai_configs",
+      "indexname": "ai_configs_pkey",
+      "indexdef": "CREATE UNIQUE INDEX ai_configs_pkey ON public.ai_configs USING btree (id)"
+    },
+    {
+      "tablename": "ai_configs",
+      "indexname": "ai_configs_user_id_unique",
+      "indexdef": "CREATE UNIQUE INDEX ai_configs_user_id_unique ON public.ai_configs USING btree (user_id)"
+    }
+  ],
+  "defaults": [
+    {
+      "table_name": "guild_members",
+      "column_name": "contribution_xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "author_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "post_type",
+      "column_default": "'discussion'::community_post_type",
+      "udt_name": "community_post_type",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "id",
+      "column_default": "nextval('items_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "category",
+      "column_default": null,
+      "udt_name": "item_category",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "rarity",
+      "column_default": "'common'::rarity",
+      "udt_name": "rarity",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "price",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "min_level",
+      "column_default": "1",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "stackable",
+      "column_default": "false",
+      "udt_name": "bool",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "max_stack",
+      "column_default": "1",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "sort_order",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "id",
+      "column_default": "nextval('companion_messages_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "id",
+      "column_default": "nextval('completions_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "quest_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "attribute",
+      "column_default": null,
+      "udt_name": "attribute",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "difficulty",
+      "column_default": null,
+      "udt_name": "difficulty",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "xp",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "gold",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "crit",
+      "column_default": "false",
+      "udt_name": "bool",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "multiplier_pct",
+      "column_default": "100",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "streak_after",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "completed_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "id",
+      "column_default": "nextval('quests_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "attribute",
+      "column_default": null,
+      "udt_name": "attribute",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "difficulty",
+      "column_default": "'medium'::difficulty",
+      "udt_name": "difficulty",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "type",
+      "column_default": "'once'::quest_type",
+      "udt_name": "quest_type",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "completed_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "times_completed",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "updated_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "id",
+      "column_default": "nextval('checkins_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "mood",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "inventory",
+      "column_name": "id",
+      "column_default": "nextval('inventory_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "inventory",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "inventory",
+      "column_name": "item_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "inventory",
+      "column_name": "quantity",
+      "column_default": "1",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "inventory",
+      "column_name": "equipped",
+      "column_default": "false",
+      "udt_name": "bool",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "inventory",
+      "column_name": "acquired_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "id",
+      "column_default": "nextval('users_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "gold",
+      "column_default": "50",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "streak",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "longest_streak",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "boost_charges",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "onboarded_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "strength_xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "intellect_xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "vitality_xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "charisma_xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "discipline_xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "creativity_xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "leaderboard_visible",
+      "column_default": "true",
+      "udt_name": "bool",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "leaderboard_opt_out",
+      "column_default": "false",
+      "udt_name": "bool",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "id",
+      "column_default": "nextval('sessions_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "expires_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "id",
+      "column_default": "nextval('ai_configs_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "temperature",
+      "column_default": "0.7",
+      "udt_name": "float4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "max_tokens",
+      "column_default": "600",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "last_test_ok",
+      "column_default": null,
+      "udt_name": "bool",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "last_tested_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "updated_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "status",
+      "column_default": "'open'::community_post_status",
+      "udt_name": "community_post_status",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "is_solved",
+      "column_default": "false",
+      "udt_name": "bool",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "guild_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "is_pinned",
+      "column_default": "false",
+      "udt_name": "bool",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "comment_count",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "reaction_count",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "save_count",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "view_count",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "helpful_count",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "last_activity_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "updated_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "edited_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "deleted_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "solved_comment_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "id",
+      "column_default": "nextval('community_comments_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "post_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "author_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "parent_comment_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "is_solution",
+      "column_default": "false",
+      "udt_name": "bool",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "depth",
+      "column_default": "1",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "helpful_count",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "reaction_count",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "updated_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "edited_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "deleted_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reactions",
+      "column_name": "id",
+      "column_default": "nextval('community_reactions_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reactions",
+      "column_name": "post_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reactions",
+      "column_name": "comment_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reactions",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reactions",
+      "column_name": "reaction",
+      "column_default": null,
+      "udt_name": "community_reaction_kind",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reactions",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_tags",
+      "column_name": "id",
+      "column_default": "nextval('community_tags_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_tags",
+      "column_name": "usage_count",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_tags",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_post_tags",
+      "column_name": "post_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_post_tags",
+      "column_name": "tag_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_post_tags",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_saved_posts",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_saved_posts",
+      "column_name": "post_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_saved_posts",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "id",
+      "column_default": "nextval('guilds_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "owner_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "visibility",
+      "column_default": "'public'::guild_visibility",
+      "udt_name": "guild_visibility",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "weekly_xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "level",
+      "column_default": "1",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "member_count",
+      "column_default": "1",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "max_members",
+      "column_default": "100",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "updated_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "id",
+      "column_default": "nextval('guild_members_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "guild_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "role",
+      "column_default": "'member'::guild_role",
+      "udt_name": "guild_role",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "id",
+      "column_default": "nextval('community_posts_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "weekly_xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_members",
+      "column_name": "joined_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "id",
+      "column_default": "nextval('guild_invites_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "guild_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "inviter_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "invitee_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "role",
+      "column_default": "'member'::guild_role",
+      "udt_name": "guild_role",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "status",
+      "column_default": "'pending'::guild_invite_status",
+      "udt_name": "guild_invite_status",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "responded_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "id",
+      "column_default": "nextval('guild_quests_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "guild_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "created_by",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "attribute",
+      "column_default": null,
+      "udt_name": "attribute",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "target",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "progress",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "reward_xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "reward_gold",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "reward_reputation",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "status",
+      "column_default": "'active'::guild_quest_status",
+      "udt_name": "guild_quest_status",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "starts_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "ends_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "completed_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "updated_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "id",
+      "column_default": "nextval('guild_quest_participants_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "guild_quest_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "contributions",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "guild_xp_awarded",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "personal_xp_awarded",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "reward_claimed",
+      "column_default": "false",
+      "udt_name": "bool",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_participants",
+      "column_name": "joined_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "id",
+      "column_default": "nextval('community_challenges_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "metric",
+      "column_default": "'sessions'::challenge_metric",
+      "udt_name": "challenge_metric",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "target",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "progress",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "reward_xp",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "reward_gold",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "reward_reputation",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "status",
+      "column_default": "'active'::challenge_status",
+      "udt_name": "challenge_status",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "starts_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "ends_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "completed_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "created_by",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "updated_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "column_name": "id",
+      "column_default": "nextval('community_challenge_participants_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "column_name": "challenge_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "column_name": "contribution",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "column_name": "reward_claimed",
+      "column_default": "false",
+      "udt_name": "bool",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_participants",
+      "column_name": "joined_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "id",
+      "column_default": "nextval('community_reputation_transactions_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "delta",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "reason",
+      "column_default": null,
+      "udt_name": "reputation_reason",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "ref_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "actor_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "id",
+      "column_default": "nextval('community_reports_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "reporter_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "post_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "comment_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "target_user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "status",
+      "column_default": "'open'::report_status",
+      "udt_name": "report_status",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "resolved_by",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "resolved_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_blocks",
+      "column_name": "blocker_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_blocks",
+      "column_name": "blocked_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_blocks",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "id",
+      "column_default": "nextval('notifications_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "kind",
+      "column_default": null,
+      "udt_name": "notification_kind",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "actor_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "ref_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "read_at",
+      "column_default": null,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "reputation",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "helpful_answers",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "solved_problems",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "posts_authored",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "comments_authored",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_stats",
+      "column_name": "tips_authored",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "id",
+      "column_default": "nextval('leaderboard_rank_snapshots_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "rank",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "metric_value",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "column_name": "id",
+      "column_default": "nextval('community_challenge_contributions_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "column_name": "challenge_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "column_name": "source_completion_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "column_name": "metric_delta",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenge_contributions",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "id",
+      "column_default": "nextval('guild_quest_contributions_id_seq'::regclass)",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "guild_quest_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "user_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "source_completion_id",
+      "column_default": null,
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "units",
+      "column_default": "1",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "guild_xp_awarded",
+      "column_default": "0",
+      "udt_name": "int4",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quest_contributions",
+      "column_name": "created_at",
+      "column_default": "now()",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "title",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "content",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "category",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "items",
+      "column_name": "icon",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "payload",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "blocked_on",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_posts",
+      "column_name": "tried",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "notes",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "last_active_date",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "model",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "last_bounty_claim",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "due_date",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "last_boss_claim_week",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "role",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "category",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "content",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_invites",
+      "column_name": "message",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "emotion",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "suggestions",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "leaderboard_rank_snapshots",
+      "column_name": "captured_on",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "ref_type",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "companion_messages",
+      "column_name": "provider",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "title",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "description",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_comments",
+      "column_name": "content",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guild_quests",
+      "column_name": "icon",
+      "column_default": "'\u2694\ufe0f'::character varying",
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "last_completed_on",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "dedupe_key",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reputation_transactions",
+      "column_name": "note",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "auth_id",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "email",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "password_hash",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "title",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "display_name",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "users",
+      "column_name": "class_key",
+      "column_default": "'knight'::character varying",
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "reason",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "details",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "users",
+      "column_name": "timezone",
+      "column_default": "'UTC'::character varying",
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "emotion",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "note",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_tags",
+      "column_name": "slug",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_tags",
+      "column_name": "label",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_reports",
+      "column_name": "resolution_note",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "checkins",
+      "column_name": "day",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "base_url",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "completions",
+      "column_name": "completed_on",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "token_hash",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "slug",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "name",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "slug",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "title",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "slug",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "name",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "motto",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "description",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "emblem",
+      "column_default": "'\ud83d\udee1\ufe0f'::character varying",
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "accent",
+      "column_default": "'gold'::character varying",
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "description",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "community_challenges",
+      "column_name": "icon",
+      "column_default": "'\ud83c\udfc6'::character varying",
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "guilds",
+      "column_name": "join_policy",
+      "column_default": "'open'::character varying",
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "items",
+      "column_name": "description",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "title",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "body",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "href",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "api_key_cipher",
+      "column_default": null,
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "ref_type",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "ai_configs",
+      "column_name": "provider",
+      "column_default": "'keyless'::character varying",
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notifications",
+      "column_name": "dedupe_key",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "quests",
+      "column_name": "title",
+      "column_default": null,
+      "udt_name": "varchar",
+      "is_nullable": "NO"
+    }
+  ],
+  "counts": {
+    "community_posts": 7,
+    "community_comments": 3,
+    "community_reactions": 3,
+    "community_tags": 14,
+    "community_post_tags": 11,
+    "community_saved_posts": 0,
+    "guilds": 1,
+    "guild_members": 3,
+    "guild_invites": 0,
+    "guild_quests": 1,
+    "guild_quest_participants": 2,
+    "community_challenges": 3,
+    "community_challenge_participants": 9,
+    "community_reputation_transactions": 7,
+    "community_reports": 0,
+    "user_blocks": 0,
+    "notifications": 10,
+    "leaderboard_rank_snapshots": 3,
+    "community_challenge_contributions": 6,
+    "guild_quest_contributions": 6,
+    "items": 17,
+    "companion_messages": 14,
+    "completions": 27,
+    "quests": 64,
+    "checkins": 3,
+    "inventory": 1,
+    "users": 12,
+    "sessions": 0,
+    "ai_configs": 2
+  },
+  "views": [
+    {
+      "name": "community_stats",
+      "note": "Existing view; combines reputation ledger and current source counts. Preserved, not replaced.",
+      "drizzleDefinition": "pgView(\"community_stats\", {\tuserId: integer(\"user_id\"),\n\treputation: integer(),\n\thelpfulAnswers: integer(\"helpful_answers\"),\n\tsolvedProblems: integer(\"solved_problems\"),\n\tpostsAuthored: integer(\"posts_authored\"),\n\tcommentsAuthored: integer(\"comments_authored\"),\n\ttipsAuthored: integer(\"tips_authored\"),\n}).as(sql`SELECT u.id AS user_id, COALESCE(rep.reputation, 0) AS reputation, COALESCE(ans.helpful_answers, 0) AS helpful_answers, COALESCE(sol.solved_problems, 0) AS solved_problems, COALESCE(pos.posts_authored, 0) AS posts_authored, COALESCE(cmt.comments_authored, 0) AS comments_authored, COALESCE(tip.tips_authored, 0) AS tips_authored FROM users u LEFT JOIN ( SELECT community_reputation_transactions.user_id, sum(community_reputation_transactions.delta)::integer AS reputation FROM community_reputation_transactions GROUP BY community_reputation_transactions.user_id) rep ON rep.user_id = u.id LEFT JOIN ( SELECT c.author_id, count(DISTINCT c.id)::integer AS helpful_answers FROM community_comments c JOIN community_reactions r ON r.comment_id = c.id AND r.reaction = 'helpful'::community_reaction_kind WHERE c.deleted_at IS NULL GROUP BY c.author_id) ans ON ans.author_id = u.id LEFT JOIN ( SELECT c.author_id, count(*)::integer AS solved_problems FROM community_comments c WHERE c.is_solution = true AND c.deleted_at IS NULL GROUP BY c.author_id) sol ON sol.author_id = u.id LEFT JOIN ( SELECT community_posts.author_id, count(*)::integer AS posts_authored FROM community_posts WHERE community_posts.deleted_at IS NULL GROUP BY community_posts.author_id) pos ON pos.author_id = u.id LEFT JOIN ( SELECT community_comments.author_id, count(*)::integer AS comments_authored FROM community_comments WHERE community_comments.deleted_at IS NULL GROUP BY community_comments.author_id) cmt ON cmt.author_id = u.id LEFT JOIN ( SELECT community_posts.author_id, count(*)::integer AS tips_authored FROM community_posts WHERE community_posts.deleted_at IS NULL AND community_posts.post_type = 'tip'::community_post_type GROUP BY community_posts.author_id) tip ON tip.author_id = u.id`);"
+    }
+  ]
+}

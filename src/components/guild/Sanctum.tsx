@@ -389,7 +389,7 @@ function MoodCheckin({ profile, onCheckin }: { profile: Profile; onCheckin: Prop
         </fieldset>
         <div>
           <label htmlFor="mood-note" className="sr-only">
-            What's on your mind?
+            What&apos;s on your mind?
           </label>
           <input
             id="mood-note"
