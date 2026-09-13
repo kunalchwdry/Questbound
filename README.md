@@ -91,6 +91,9 @@ See [`.env.example`](./.env.example) for the full template.
 | `AI_API_KEY` | optional | Your key for a keyed provider (server-side only); takes precedence over keyless |
 | `AI_MODEL`, `AI_BASE_URL` | optional | Override the model / endpoint defaults |
 | `GEMINI_API_KEY` / `GROQ_API_KEY` / `NVIDIA_API_KEY` / `OPENAI_API_KEY` | optional | Recognised if `AI_API_KEY` is empty; provider is inferred |
+| `APP_ENCRYPTION_KEY` | recommended | Master key for AES-256-GCM encryption of per-user LLM API keys in `ai_configs` (`openssl rand -base64 48`); if unset, one is derived from server secrets |
+
+**Per-user override:** the variables above set the deployment-wide default, but each hero can pick their own provider/key in **Settings → AI / LLM** (see [The Oracle → per-user configuration](#per-user-ai--llm-configuration-settings--ai--llm)). A saved override always wins for that user.
 
 **With no configuration at all** the Oracle already runs on a hedged ensemble of
 free, keyless models (LLM7 → OVHcloud Mistral Nemo → Pollinations → Kilo, with
@@ -234,7 +237,20 @@ flowchart TD
 - **Local model** — `src/lib/emotion.ts`: multinomial Naive Bayes with negation handling and bigrams, 8 labels (`joy, calm, tired, anxious, sad, frustrated, overwhelmed, neutral`), trained at boot from a labelled seed corpus. Extend `TRAINING_DATA` to retrain.
 - **Suggestion sizing** — overwhelmed / tired / sad → one trivial quest; anxious → one 5-minute concrete step; joy / calm → medium or hard. Suggestions are validated and become real quests with one tap.
 - **Safety** — crisis lexicon always prepends helpline guidance; the Oracle is framed as a companion, not a clinician.
-- **Providers** — *zero setup:* a two-wave race of free, keyless models (wave 0: LLM7 Codestral, OVHcloud Mistral Nemo, Pollinations GPT-OSS; wave 1 backstops: Kilo Nemotron, OVH GPT-OSS-120b, Kilo auto) with the fastest valid reply winning and losers aborted. *With a key:* Gemini `gemini-2.5-flash`, Groq `llama-3.3-70b-versatile`, NVIDIA `meta/llama-3.3-70b-instruct`, OpenAI `gpt-4o-mini`, or any custom endpoint (override with `AI_MODEL` / `AI_BASE_URL`). Provider endpoints, free models and quotas change often — see [`RESEARCH.md`](./RESEARCH.md).
+- **Providers** — *zero setup:* a two-wave race of free, keyless models (wave 0: LLM7 Codestral, OVHcloud Mistral Nemo, Pollinations GPT-OSS; wave 1 backstops: Kilo Nemotron, OVH GPT-OSS-120b, Kilo auto) with the fastest valid reply winning and losers aborted. *With a key:* Gemini (default `gemini-3.6-flash`), Groq `llama-3.3-70b-versatile`, NVIDIA `meta/llama-3.3-70b-instruct`, OpenAI `gpt-4o-mini`, or any custom endpoint (override with `AI_MODEL` / `AI_BASE_URL`). Provider endpoints, free models and quotas change often — see [`RESEARCH.md`](./RESEARCH.md).
+
+### Per-user AI / LLM configuration (Settings → AI / LLM)
+
+Each hero configures their own Oracle provider from the dashboard — no redeploy needed:
+
+- **Providers** — Automatic free ensemble (keyless), **Local Model** (Ollama, LM Studio, llama.cpp, any OpenAI-compatible server), **Groq**, **Google Gemini**, **NVIDIA NIM**, **OpenAI**, or any **custom** OpenAI-compatible endpoint.
+- **Live model picker** — after a key is entered (or immediately for keyless/local servers), the *Model Name* field becomes a dropdown fetched live from the provider's `/models` catalogue. Hosted catalogues are filtered to chat/text models (Whisper, embeddings, moderation, TTS and image SKUs are hidden); Gemini uses its native `v1beta` catalogue for display names and capabilities, local/custom servers list everything they expose. Stable models appear first, previews in a labelled group, and an **Other — type a model name…** entry always allows manual models.
+- **Connection testing** — *Test Connection* validates the base URL, checks reachability, lists models and confirms the chosen model + credentials, with precise failures (unreachable / auth rejected / model missing).
+- **Local-first privacy** — a configured local or custom endpoint is the *only* target the Oracle calls; it never silently fails over to a third-party cloud. If it is down, only the on-device Naive Bayes model answers. (On Vercel, `localhost` means Vercel's container — self-host Questbound to use a model on your laptop.)
+- **Gemini 3.x** — requests automatically set `reasoning_effort: low` so hidden thinking tokens don't truncate replies within the token budget.
+- **Secret handling** — API keys are stored **AES-256-GCM encrypted** in the `ai_configs` table (key from `APP_ENCRYPTION_KEY`, see `.env.example`), never sent to the browser (the UI only receives `hasApiKey`), masked with a show/hide toggle, and stripped from error strings, logs and traces. Temperature and max-tokens are per-user too.
+
+Server implementation lives in `src/lib/ai-settings.ts` (storage, validation, connection tester), `src/lib/ai-models.ts` (catalogues), `src/lib/crypto.ts` (vault) and `src/app/api/settings/ai/` (GET/PUT, `/test`, `/models`).
 
 ---
 
@@ -248,6 +264,7 @@ erDiagram
   users ||--o{ inventory : holds
   users ||--o{ checkins : logs
   users ||--o{ companion_messages : chats
+  users ||--|| ai_configs : "LLM settings (1:1)"
   items ||--o{ inventory : "is held as"
   quests |o--o{ completions : "produced (set null on delete)"
 
@@ -337,6 +354,18 @@ erDiagram
     text suggestions
     varchar provider
   }
+  ai_configs {
+    serial id PK
+    int user_id FK UK "1:1, cascade delete"
+    varchar provider "keyless|local|groq|gemini|nvidia|openai|custom"
+    varchar model
+    varchar base_url
+    text api_key_cipher "AES-256-GCM envelope, server-only"
+    real temperature
+    int max_tokens
+    bool last_test_ok
+    timestamp last_tested_at
+  }
 ```
 
 Achievements are **derived** at read time from counts, levels and streaks — no table needed.
@@ -363,6 +392,9 @@ All responses are JSON. Errors are `{ "error": "human-readable message" }` with 
 | POST | `/api/boss/claim` | Weekly boss reward |
 | POST | `/api/checkin` | `{ mood: 1-5, note? }` → emotion label + reply |
 | GET / POST / DELETE | `/api/companion` | Oracle history / send `{ message }` / clear |
+| GET / PUT | `/api/settings/ai` | Read public LLM config (never the key) / save provider, model, base URL, key, temperature, max tokens |
+| POST | `/api/settings/ai/test` | Server-side connection test for unsaved/saved values |
+| POST | `/api/settings/ai/models` | Live chat-model catalogue for the selected provider |
 | PATCH | `/api/profile` | `{ displayName?, classKey?, onboarded? }` |
 | GET | `/api/health` | DB liveness |
 

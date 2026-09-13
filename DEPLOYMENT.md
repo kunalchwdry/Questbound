@@ -71,12 +71,29 @@ Set these in **Vercel → Project → Settings → Environment Variables** (and 
 | `SUPABASE_URL` | same as above |
 | `SUPABASE_ANON_KEY` | same publishable/anon key |
 | `NEXT_PUBLIC_SITE_URL` | your deployed URL, e.g. `https://questbound.vercel.app` |
-| `AI_PROVIDER` | *(optional)* leave empty for keyless ensemble, or `local`, a keyless id, or `gemini`/`groq`/`nvidia`/`openai`/`custom` |
+| `AI_PROVIDER` | *(optional)* leave empty for keyless ensemble, or `local`, a keyless id, or `groq`/`gemini`/`nvidia`/`openai`/`custom` |
 | `AI_ALLOW_KEYLESS` | `true` (default) |
-| `AI_API_KEY` | *(optional)* a keyed-provider key |
+| `AI_API_KEY` | *(optional)* a deployment-wide keyed-provider key |
+| `APP_ENCRYPTION_KEY` | **recommended** — `openssl rand -base64 48`; encrypts heroes' per-user LLM keys in `ai_configs`. Rotating it invalidates stored LLM keys (heroes re-enter them) |
 
 Only the `NEXT_PUBLIC_*` values are safe in the browser. Keep the database
 password and any service-role key server-side only.
+
+### Per-user LLM keys (Settings → AI / LLM)
+
+Heroes can attach their own Groq / Gemini / NVIDIA / OpenAI / custom / local
+model from the dashboard. These keys are stored AES-256-GCM encrypted
+(`ai_configs.api_key_cipher`), never returned by any API, and redacted from
+errors/logs. Requirements:
+
+- migration `drizzle/0001_ai_configs.sql` applied (see §1) and a set
+  `APP_ENCRYPTION_KEY`;
+- for **local models**, the Questbound *server* must be able to reach the
+  endpoint — on Vercel, `http://localhost:11434` points at Vercel's container,
+  not the hero's machine. Self-host (Dockerfile in §5) or expose the model
+  server over HTTPS to use local/private models.
+- Gemini keys created after mid-2026 can't use the retired `gemini-2.5-flash`;
+  the app defaults to `gemini-3.6-flash` (with `reasoning_effort=low`).
 
 ---
 
