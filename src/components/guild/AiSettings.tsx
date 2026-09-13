@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { api } from "@/lib/client-api";
 import { formatRelativeTime } from "@/lib/dates";
 import {
@@ -20,6 +20,11 @@ type Outcome = {
   model?: string;
   latencyMs?: number;
 };
+
+type ModelOption = { id: string; label: string; preview: boolean };
+type ModelsState = "idle" | "loading" | "ready" | "empty" | "error";
+type Toast = (t: { title: string; body?: string; variant?: "default" | "success" | "danger" | "gold" | "info" }) => void;
+const CUSTOM_VALUE = "__custom_model__";
 
 function StatusPill({ config }: { config: AiConfigPublic | null }) {
   if (!config || config.provider === "keyless") {
@@ -55,32 +60,34 @@ function Field({
   label,
   htmlFor,
   hint,
+  action,
   children,
 }: {
   label: string;
   htmlFor: string;
   hint?: string;
+  action?: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
     <div>
-      <label htmlFor={htmlFor} className="mb-1.5 block text-sm font-bold">
-        {label}
-      </label>
+      <div className="mb-1.5 flex items-center justify-between gap-2">
+        <label htmlFor={htmlFor} className="block text-sm font-bold">
+          {label}
+        </label>
+        {action}
+      </div>
       {children}
       {hint && <p className="mt-1.5 text-xs leading-relaxed text-muted">{hint}</p>}
     </div>
   );
 }
 
-export function AiSettings({
-  toast,
-}: {
-  toast: (t: { title: string; body?: string; variant?: "default" | "success" | "danger" | "gold" | "info" }) => void;
-}) {
+export function AiSettings({ toast }: { toast: Toast }) {
   const [config, setConfig] = useState<AiConfigPublic | null>(null);
   const [provider, setProvider] = useState<AiProvider>("keyless");
   const [model, setModel] = useState("");
+  const [customModel, setCustomModel] = useState(false);
   const [baseUrl, setBaseUrl] = useState("");
   const [apiKey, setApiKey] = useState("");
   const [clearKey, setClearKey] = useState(false);
@@ -92,6 +99,82 @@ export function AiSettings({
   const [outcome, setOutcome] = useState<Outcome | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const [models, setModels] = useState<ModelOption[]>([]);
+  const [modelsState, setModelsState] = useState<ModelsState>("idle");
+  const [modelsMessage, setModelsMessage] = useState<string | null>(null);
+  const [catalogKey, setCatalogKey] = useState("");
+
+  const meta = AI_PROVIDER_META[provider];
+  const isKeyless = provider === "keyless";
+
+  const payload = useCallback(
+    () => ({
+      provider,
+      model: isKeyless ? "" : model.trim(),
+      baseUrl: isKeyless ? "" : baseUrl.trim(),
+      apiKey: apiKey.trim() || undefined,
+      clearKey,
+      temperature,
+      maxTokens,
+    }),
+    [provider, model, baseUrl, apiKey, clearKey, temperature, maxTokens, isKeyless],
+  );
+
+  const loadModels = useCallback(
+    async (body?: {
+      provider: AiProvider;
+      model: string;
+      baseUrl: string;
+      apiKey?: string;
+      clearKey?: boolean;
+      temperature: number;
+      maxTokens: number;
+    }) => {
+      const b = body ?? payload();
+      if (b.provider === "keyless") return;
+      if (!b.baseUrl) {
+        setModelsState("error");
+        setModelsMessage("Set the API Base URL first.");
+        return;
+      }
+      setModelsState("loading");
+      setModelsMessage(null);
+      try {
+        const r = await api<{ models?: ModelOption[] } & Partial<Outcome>>("/api/settings/ai/models", {
+          method: "POST",
+          body: JSON.stringify(b),
+        });
+        if (!Array.isArray(r.models)) {
+          setModels([]);
+          setModelsState("error");
+          setModelsMessage(r.detail ? `${r.title}: ${r.detail}` : r.title ?? "Couldn't load models.");
+          return;
+        }
+        setModels(r.models);
+        if (r.models.length === 0) {
+          setModelsState("empty");
+          setModelsMessage("The endpoint returned no chat models. Type the model name manually.");
+          setCustomModel(true);
+          return;
+        }
+        setModelsState("ready");
+        const preset = AI_PROVIDER_META[b.provider as AiProvider]?.defaultModel;
+        const ids = r.models.map((m) => m.id);
+        const current = b.model.trim();
+        if (!ids.includes(current)) {
+          setModel(ids.includes(preset) ? preset : r.models[0].id);
+        }
+        setCustomModel(false);
+      } catch (err) {
+        setModels([]);
+        setModelsState("error");
+        setModelsMessage(err instanceof Error ? err.message : "Couldn't load models.");
+      }
+    },
+    [payload],
+  );
+
+  // Load the saved configuration once.
   useEffect(() => {
     let alive = true;
     api<{ config: AiConfigPublic }>("/api/settings/ai")
@@ -104,48 +187,102 @@ export function AiSettings({
         setBaseUrl(c.baseUrl);
         setTemperature(c.temperature);
         setMaxTokens(c.maxTokens);
+        setCatalogKey(c.hasApiKey ? "saved" : "");
+        if (c.provider !== "keyless" && c.baseUrl && (c.hasApiKey || c.provider === "local" || c.provider === "custom")) {
+          const b = {
+            provider: c.provider,
+            model: c.model,
+            baseUrl: c.baseUrl,
+            temperature: c.temperature,
+            maxTokens: c.maxTokens,
+          };
+          void loadModels(b);
+        }
       })
       .catch(() => alive && setError("Couldn't load the Oracle configuration."));
     return () => {
       alive = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const meta = AI_PROVIDER_META[provider];
-  const isKeyless = provider === "keyless";
 
   function changeProvider(next: AiProvider) {
     setProvider(next);
     setOutcome(null);
     setError(null);
+    setModels([]);
+    setModelsMessage(null);
+    setCustomModel(false);
+    if (keyTimer.current) clearTimeout(keyTimer.current);
+    setCatalogKey("");
     const nextMeta = AI_PROVIDER_META[next];
-    // Only overwrite fields the user hasn't customised away from the old preset.
     setBaseUrl((current) => {
-      const oldDefaults = AI_PROVIDER_META[provider].defaultBaseUrl;
+      const oldDefaults = meta.defaultBaseUrl;
       return !current || current === oldDefaults ? nextMeta.defaultBaseUrl : current;
     });
     setModel((current) => {
-      const oldDefault = AI_PROVIDER_META[provider].defaultModel;
+      const oldDefault = meta.defaultModel;
       return !current || current === oldDefault ? nextMeta.defaultModel : current;
     });
+    if (next === "keyless") {
+      setModelsState("idle");
+      return;
+    }
+    // Auto-load catalogues that need no key; keyed providers wait for a key.
+    if (!nextMeta.needsKey) {
+      setModelsState("idle");
+      const b = {
+        provider: next,
+        model: nextMeta.defaultModel,
+        baseUrl: nextMeta.defaultBaseUrl,
+        temperature,
+        maxTokens,
+      };
+      void loadModels(b);
+    } else {
+      setModelsState("idle");
+      setModelsMessage("Paste your API key (or use a saved one), then load the model list.");
+    }
   }
 
-  function payload() {
-    return {
-      provider,
-      model: isKeyless ? "" : model.trim(),
-      baseUrl: isKeyless ? "" : baseUrl.trim(),
-      apiKey: apiKey.trim() || undefined,
-      clearKey,
-      temperature,
-      maxTokens,
-    };
+  const keyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Load a keyed provider's catalogue shortly after a key is pasted/typed,
+  // or immediately on blur. No request is sent until the key is non-empty.
+  function onKeyChange(value: string) {
+    setApiKey(value);
+    setClearKey(false);
+    if (keyTimer.current) clearTimeout(keyTimer.current);
+    const k = value.trim();
+    if (!isKeyless && meta.needsKey && k.length >= 12 && k !== catalogKey && baseUrl.trim()) {
+      keyTimer.current = setTimeout(() => {
+        setCatalogKey(k);
+        void loadModels({
+          provider,
+          model,
+          baseUrl: baseUrl.trim(),
+          apiKey: k,
+          temperature,
+          maxTokens,
+        });
+      }, 650);
+    }
+  }
+
+  function onKeyBlur() {
+    if (keyTimer.current) clearTimeout(keyTimer.current);
+    if (isKeyless || !meta.needsKey) return;
+    const k = apiKey.trim();
+    if (k && k !== catalogKey && baseUrl.trim()) {
+      setCatalogKey(k);
+      void loadModels({ provider, model, baseUrl: baseUrl.trim(), apiKey: k, temperature, maxTokens });
+    }
   }
 
   function clientValidate(): string | null {
     if (isKeyless) return null;
     if (!baseUrl.trim()) return "Set the API Base URL.";
-    if (!model.trim()) return "Name the model to use.";
+    if (!model.trim()) return "Pick or type the model to use.";
     if (meta.needsKey && !apiKey.trim() && !clearKey && !config?.hasApiKey) {
       return `${meta.label} needs an API key.`;
     }
@@ -169,8 +306,8 @@ export function AiSettings({
       });
       setOutcome(r.result);
       setConfig(r.config);
+      if (r.result.ok) void loadModels();
       if (r.result.ok && r.config.connected === null) {
-        // Works, but the tested values aren't saved yet.
         toast({ title: "Connection works", body: "Save the configuration to make it active.", variant: "info" });
       }
     } catch (err) {
@@ -197,18 +334,24 @@ export function AiSettings({
       setConfig(r.config);
       setApiKey("");
       setClearKey(false);
+      setCatalogKey(r.config.hasApiKey ? "saved" : "");
       setOutcome(null);
       toast({
         title: r.config.provider === "keyless" ? "Using free keyless models" : "Oracle configuration saved",
         body: r.config.provider === "keyless" ? undefined : "Run Test Connection to confirm the endpoint.",
         variant: "success",
       });
+      if (r.config.provider !== "keyless") void loadModels();
     } catch (err) {
       setError(err instanceof Error ? err.message : "The save failed. Try again.");
     } finally {
       setSaving(false);
     }
   }
+
+  const stableModels = models.filter((m) => !m.preview);
+  const previewModels = models.filter((m) => m.preview);
+  const selectValue = customModel || modelsState !== "ready" ? CUSTOM_VALUE : models.some((m) => m.id === model) ? model : CUSTOM_VALUE;
 
   return (
     <section className="panel panel-gilded p-5 sm:p-6" aria-labelledby="ai-settings-title">
@@ -245,16 +388,87 @@ export function AiSettings({
         {!isKeyless && (
           <>
             <div className="grid gap-4 sm:grid-cols-2">
-              <Field label="Model Name" htmlFor="ai-model">
-                <input
-                  id="ai-model"
-                  className="input font-mono text-[0.9rem]"
-                  value={model}
-                  onChange={(e) => setModel(e.target.value)}
-                  placeholder={meta.modelPlaceholder}
-                  autoComplete="off"
-                  spellCheck={false}
-                />
+              <Field
+                label="Model Name"
+                htmlFor="ai-model"
+                action={
+                  <button
+                    type="button"
+                    onClick={() => void loadModels()}
+                    disabled={modelsState === "loading" || !baseUrl.trim()}
+                    className="text-xs font-bold text-gold-2 underline-offset-2 hover:underline disabled:opacity-50"
+                  >
+                    {modelsState === "loading" ? "Loading…" : "↻ Load models"}
+                  </button>
+                }
+              >
+                {modelsState === "ready" && !customModel ? (
+                  <select
+                    id="ai-model"
+                    className="input font-mono text-[0.85rem]"
+                    value={selectValue}
+                    onChange={(e) => {
+                      if (e.target.value === CUSTOM_VALUE) {
+                        setCustomModel(true);
+                        setModel("");
+                      } else {
+                        setModel(e.target.value);
+                      }
+                    }}
+                  >
+                    {stableModels.map((m) => (
+                      <option key={m.id} value={m.id}>
+                        {m.label}
+                      </option>
+                    ))}
+                    {previewModels.length > 0 && (
+                      <optgroup label="Preview / experimental">
+                        {previewModels.map((m) => (
+                          <option key={m.id} value={m.id}>
+                            {m.label}
+                          </option>
+                        ))}
+                      </optgroup>
+                    )}
+                    <option value={CUSTOM_VALUE}>Other — type a model name…</option>
+                  </select>
+                ) : (
+                  <div className="flex gap-2">
+                    <input
+                      id="ai-model"
+                      className="input font-mono text-[0.9rem]"
+                      value={model}
+                      onChange={(e) => setModel(e.target.value)}
+                      placeholder={meta.modelPlaceholder}
+                      autoComplete="off"
+                      spellCheck={false}
+                    />
+                    {modelsState === "ready" && (
+                      <button
+                        type="button"
+                        onClick={() => setCustomModel(false)}
+                        className="btn btn-ghost shrink-0 px-3 text-xs"
+                        title="Pick from the model list"
+                      >
+                        List
+                      </button>
+                    )}
+                  </div>
+                )}
+                {modelsState === "loading" && (
+                  <p className="mt-1.5 text-xs text-muted">Fetching available models from {meta.label}…</p>
+                )}
+                {modelsState === "error" && modelsMessage && (
+                  <p role="alert" className="mt-1.5 text-xs font-semibold text-danger">
+                    {modelsMessage}
+                  </p>
+                )}
+                {modelsState === "empty" && modelsMessage && (
+                  <p className="mt-1.5 text-xs text-muted">{modelsMessage}</p>
+                )}
+                {modelsState === "idle" && modelsMessage && (
+                  <p className="mt-1.5 text-xs text-muted">{modelsMessage}</p>
+                )}
               </Field>
               <Field label="Max Tokens" htmlFor="ai-max-tokens" hint="Upper bound per Oracle reply.">
                 <input
@@ -286,11 +500,7 @@ export function AiSettings({
             <Field
               label="API Key (optional for local models)"
               htmlFor="ai-key"
-              hint={
-                meta.keyUrl
-                  ? undefined
-                  : "Stored encrypted on the server; never shown again after saving."
-              }
+              hint={meta.keyUrl ? undefined : "Stored encrypted on the server; never shown again after saving."}
             >
               {meta.keyUrl && (
                 <p className="mb-1.5 text-xs text-muted">
@@ -311,12 +521,10 @@ export function AiSettings({
                   className="input pr-14 font-mono text-[0.9rem]"
                   type={showKey ? "text" : "password"}
                   value={clearKey ? "" : apiKey}
-                  onChange={(e) => {
-                    setApiKey(e.target.value);
-                    setClearKey(false);
-                  }}
+                  onChange={(e) => onKeyChange(e.target.value)}
                   autoComplete="new-password"
                   spellCheck={false}
+                  onBlur={onKeyBlur}
                   placeholder={
                     config?.hasApiKey && !clearKey ? "••••••••••••  saved — leave blank to keep" : "Paste API key"
                   }

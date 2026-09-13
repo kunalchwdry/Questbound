@@ -49,7 +49,7 @@ interface Preset {
 const KEYED_PRESETS: Record<KeyedProvider, Preset> = {
   gemini: {
     baseUrl: "https://generativelanguage.googleapis.com/v1beta/openai",
-    model: "gemini-2.5-flash",
+    model: "gemini-3.6-flash",
     label: "Google Gemini",
     json: "response_format",
   },
@@ -443,6 +443,11 @@ async function chat(
     // Keyless gateways reject (or bill) native JSON mode — ask in the prompt.
     if (cfg.json === "response_format") {
       body.response_format = { type: "json_object" };
+    }
+    // Gemini 3.x are "thinking" models whose hidden reasoning shares the
+    // output token budget — without this, a 600-token cap truncates the reply.
+    if (cfg.provider === "gemini") {
+      body.reasoning_effort = "low";
     }
 
     const res = await fetch(`${cfg.baseUrl}/chat/completions`, {
