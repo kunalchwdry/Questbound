@@ -1,8 +1,10 @@
 import { and, eq } from "drizzle-orm";
 import { db } from "@/db";
+import { questEvents } from "@/db/innerloop-schema";
 import { quests } from "@/db/schema";
 import { ApiError, handle, ok, parseBody, parseId, requireUser } from "@/lib/api";
 import { serializeQuest } from "@/lib/dashboard";
+import { todayInTimeZone } from "@/lib/dates";
 import { questPatchSchema } from "@/lib/validation";
 
 export const dynamic = "force-dynamic";
@@ -48,6 +50,27 @@ export async function DELETE(_req: Request, ctx: Ctx) {
     const user = await requireUser();
     const { id } = await ctx.params;
     const questId = parseId(id);
+
+    // InnerLoop: record the abandon before the row disappears (FK SET NULL keeps the ledger clean).
+    const [quest] = await db
+      .select({ scheduledFor: quests.scheduledFor })
+      .from(quests)
+      .where(and(eq(quests.id, questId), eq(quests.userId, user.id)));
+    void (async () => {
+      try {
+        if (quest) {
+          await db.insert(questEvents).values({
+            userId: user.id,
+            questId,
+            event: "abandoned",
+            scheduledFor: quest.scheduledFor ?? todayInTimeZone(user.timezone),
+          });
+        }
+      } catch (err) {
+        console.warn("[innerloop] abandon event log failed:", err);
+      }
+    })();
+
     const deleted = await db
       .delete(quests)
       .where(and(eq(quests.id, questId), eq(quests.userId, user.id)))
