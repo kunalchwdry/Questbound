@@ -120,6 +120,24 @@ export interface Quest {
   timesCompleted: number;
   timesToday: number;
   createdAt: string;
+  // ---- InnerLoop adaptive planning (nullable; only set for plan quests) ----
+  parentQuestId?: number | null;
+  goalId?: number | null;
+  estimatedMinutes?: number | null;
+  scheduledFor?: string | null;
+  scheduledOrder?: number | null;
+  planContext?: {
+    source?: string;
+    energy?: string;
+    mood?: string | null;
+    size?: string;
+    splitFrom?: string;
+  } | null;
+  questStatus?: "active" | "postponed" | "split";
+  /** 1-based position inside a group of siblings created by a split. */
+  splitIndex?: number | null;
+  /** Total siblings in the split group (for "2 of 3" display). */
+  splitTotal?: number | null;
 }
 
 export interface HistoryEntry {

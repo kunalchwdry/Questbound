@@ -247,20 +247,9 @@ export async function getDashboard(userId: number): Promise<Dashboard> {
     oracleProvider: getOracleConfig()?.label ?? null,
   };
 
-  const questList: Quest[] = questRows.map((q) => ({
-    id: q.id,
-    title: q.title,
-    notes: q.notes,
-    attribute: q.attribute,
-    difficulty: q.difficulty,
-    type: q.type,
-    dueDate: q.dueDate,
-    completedAt: q.completedAt ? q.completedAt.toISOString() : null,
-    lastCompletedOn: q.lastCompletedOn,
-    timesCompleted: q.timesCompleted,
-    timesToday: todayCounts.get(q.id) ?? 0,
-    createdAt: q.createdAt.toISOString(),
-  }));
+  const questList: Quest[] = questRows.map((q) =>
+    serializeQuest(q, todayCounts.get(q.id) ?? 0),
+  );
 
   const history: HistoryEntry[] = historyRows.map((c) => ({
     id: c.id,
@@ -315,5 +304,13 @@ export function serializeQuest(q: typeof quests.$inferSelect, timesToday = 0): Q
     timesCompleted: q.timesCompleted,
     timesToday,
     createdAt: q.createdAt.toISOString(),
+    // InnerLoop planning metadata (nullable for pre-InnerLoop quests)
+    parentQuestId: q.parentQuestId ?? null,
+    goalId: q.goalId ?? null,
+    estimatedMinutes: q.estimatedMinutes ?? null,
+    scheduledFor: q.scheduledFor ?? null,
+    scheduledOrder: q.scheduledOrder ?? null,
+    planContext: (q.planContext as Quest["planContext"]) ?? null,
+    questStatus: (q.questStatus as Quest["questStatus"]) ?? "active",
   };
 }
