@@ -4,6 +4,7 @@ import { formatDay, formatRelativeTime } from "@/lib/dates";
 import { ATTRIBUTE_META, DIFFICULTY_META } from "@/lib/game";
 import type { HistoryEntry, Profile } from "@/lib/types";
 import { Heatmap } from "./Heatmap";
+import { InsightsCard } from "./InsightsCard";
 
 export function Chronicle({ history, profile }: { history: HistoryEntry[]; profile: Profile }) {
   const todayEntries = history.filter((h) => h.completedOn === profile.today);
@@ -33,6 +34,8 @@ export function Chronicle({ history, profile }: { history: HistoryEntry[]; profi
       </div>
 
       <Heatmap profile={profile} />
+
+      <InsightsCard />
 
       {groups.size === 0 ? (
         <div className="panel rise p-10 text-center">

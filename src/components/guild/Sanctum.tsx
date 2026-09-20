@@ -7,6 +7,7 @@ import { formatDay, formatRelativeTime } from "@/lib/dates";
 import { EMOTION_META, type Emotion } from "@/lib/emotion";
 import { ATTRIBUTE_META, DIFFICULTY_META } from "@/lib/game";
 import type { CompanionMessage, Profile, Quest, QuestInput } from "@/lib/types";
+import { PlanMyDay } from "./PlanMyDay";
 import { isQuestDone } from "./useGuild";
 
 interface Props {
@@ -16,6 +17,10 @@ interface Props {
   onComplete: (id: number) => void;
   onCheckin: (input: { mood: number; note?: string }) => Promise<{ emotion: string; reply: string } | null>;
   toast: (t: { title: string; body?: string; variant?: "default" | "success" | "danger" | "gold" | "info" }) => void;
+  /** Externally requested quest to focus (from the Daily Plan "Start" button). */
+  focusQuestId: number | null;
+  onFocusHandled: () => void;
+  onPlanAccepted: () => void;
 }
 
 const MOODS = [
@@ -37,13 +42,24 @@ function emotionMeta(key: string | null | undefined) {
   return EMOTION_META[(key ?? "neutral") as Emotion] ?? EMOTION_META.neutral;
 }
 
-export function Sanctum({ profile, quests, onCreate, onComplete, onCheckin, toast }: Props) {
+export function Sanctum({ profile, quests, onCreate, onComplete, onCheckin, toast, focusQuestId, onFocusHandled, onPlanAccepted }: Props) {
   return (
     <div className="grid gap-4 xl:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
       <Oracle profile={profile} onCreate={onCreate} toast={toast} />
       <div className="space-y-4">
+        <PlanMyDay
+          latestMood={profile.checkins[0]?.emotion ?? null}
+          onPlanAccepted={onPlanAccepted}
+          toast={toast}
+        />
         <MoodCheckin profile={profile} onCheckin={onCheckin} />
-        <FocusTimer profile={profile} quests={quests} onComplete={onComplete} />
+        <FocusTimer
+          profile={profile}
+          quests={quests}
+          onComplete={onComplete}
+          focusQuestId={focusQuestId}
+          onFocusHandled={onFocusHandled}
+        />
       </div>
     </div>
   );
@@ -433,13 +449,30 @@ function MoodCheckin({ profile, onCheckin }: { profile: Profile; onCheckin: Prop
 // ---------------------------------------------------------------------------
 // Focus timer (Forest / Pomodoro): finishing a session seals the chosen quest
 // ---------------------------------------------------------------------------
-function FocusTimer({ profile, quests, onComplete }: { profile: Profile; quests: Quest[]; onComplete: (id: number) => void }) {
+function FocusTimer({ profile, quests, onComplete, focusQuestId, onFocusHandled }: { profile: Profile; quests: Quest[]; onComplete: (id: number) => void; focusQuestId: number | null; onFocusHandled: () => void }) {
   const open = quests.filter((q) => !isQuestDone(q, profile.today) && q.id > 0);
   const [minutes, setMinutes] = useState(25);
   const [questId, setQuestId] = useState<number | "">("");
   const [left, setLeft] = useState<number | null>(null);
   const [running, setRunning] = useState(false);
   const endRef = useRef<number>(0);
+
+  // Preselect a quest when the Daily Plan "Start" button hands one over, and
+  // use its estimate as the session length. We adjust state during render —
+  // the officially-endorsed alternative to a syncing effect.
+  const [handledFocus, setHandledFocus] = useState<number | null>(null);
+  if (focusQuestId != null && focusQuestId !== handledFocus) {
+    setHandledFocus(focusQuestId);
+    const q = open.find((x) => x.id === focusQuestId);
+    if (q) {
+      setQuestId(q.id);
+      if (q.estimatedMinutes != null) {
+        setMinutes(Math.max(5, Math.min(120, q.estimatedMinutes)));
+      }
+    }
+    // Notify parent outside of render to avoid cross-component updates.
+    queueMicrotask(onFocusHandled);
+  }
 
   useEffect(() => {
     if (!running) return;
@@ -460,6 +493,13 @@ function FocusTimer({ profile, quests, onComplete }: { profile: Profile; quests:
     endRef.current = Date.now() + minutes * 60_000;
     setLeft(minutes * 60);
     setRunning(true);
+    // InnerLoop: behavioural telemetry — a started session (fire-and-forget).
+    if (questId !== "") {
+      api(`/api/quests/${questId}/event`, {
+        method: "POST",
+        body: JSON.stringify({ event: "started", durationMin: minutes }),
+      }).catch(() => undefined);
+    }
   }
   function stop() {
     setRunning(false);

@@ -27,6 +27,7 @@ interface Props {
   onCreate: (input: QuestInput) => Promise<boolean>;
   onUpdate: (id: number, patch: Partial<QuestInput>) => Promise<boolean>;
   onDelete: (id: number) => void;
+  onSplit?: (id: number) => void;
   /** Incrementing this number from outside opens the "new quest" form (keyboard shortcut). */
   openSignal?: number;
 }
@@ -40,6 +41,7 @@ export function QuestBoard({
   onCreate,
   onUpdate,
   onDelete,
+  onSplit,
   openSignal = 0,
 }: Props) {
   const [filter, setFilter] = useState<Filter>("all");
@@ -175,6 +177,7 @@ export function QuestBoard({
                   setFormOpen(true);
                 }}
                 onDelete={onDelete}
+                onSplit={onSplit}
               />
             ))}
           </AnimatePresence>

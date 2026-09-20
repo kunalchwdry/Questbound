@@ -429,6 +429,45 @@ export function useGuild(initial: Dashboard, options: Options) {
   );
 
   // -------------------------------------------------------------------------
+  // InnerLoop: split an oversized quest into smaller siblings
+  // -------------------------------------------------------------------------
+  const splitQuest = useCallback(
+    async (id: number) => {
+      if (id < 0) return;
+      markPending(id, true);
+      inflight.current += 1;
+      try {
+        const res = await api<{
+          parent: { id: number; title: string };
+          children: Quest[];
+          message: string;
+          dashboard: Dashboard;
+        }>(`/api/quests/${id}/split`, {
+          method: "POST",
+          body: JSON.stringify({ into: 3 }),
+        });
+        applyServer(res.dashboard);
+        optionsRef.current.toast({
+          title: "Quest split into chapters",
+          body: res.message,
+          variant: "success",
+        });
+        optionsRef.current.announce(res.message);
+      } catch (err) {
+        optionsRef.current.toast({
+          title: "Couldn't split that quest",
+          body: errorMessage(err),
+          variant: "danger",
+        });
+      } finally {
+        inflight.current -= 1;
+        markPending(id, false);
+      }
+    },
+    [applyServer],
+  );
+
+  // -------------------------------------------------------------------------
   // Armory
   // -------------------------------------------------------------------------
   const purchase = useCallback(
@@ -773,6 +812,7 @@ export function useGuild(initial: Dashboard, options: Options) {
     createQuest,
     updateQuest,
     deleteQuest,
+    splitQuest,
     purchase,
     equip,
     useConsumable,

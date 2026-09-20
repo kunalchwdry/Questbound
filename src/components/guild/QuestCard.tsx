@@ -17,6 +17,7 @@ interface Props {
   onComplete: (id: number) => void;
   onEdit: (quest: Quest) => void;
   onDelete: (id: number) => void;
+  onSplit?: (id: number) => void;
 }
 
 export function QuestCard({
@@ -28,6 +29,7 @@ export function QuestCard({
   onComplete,
   onEdit,
   onDelete,
+  onSplit,
 }: Props) {
   const [confirming, setConfirming] = useState(false);
   const reward = previewReward(profile, quest);
@@ -36,6 +38,9 @@ export function QuestCard({
   const type = QUEST_TYPE_META[quest.type];
   const overdue = Boolean(quest.dueDate && !done && quest.dueDate < profile.today);
   const optimistic = quest.id < 0;
+  // Offer "Split" when the quest is too large for a single focus block.
+  const estMins = quest.estimatedMinutes ?? (quest.difficulty === "hard" ? 90 : quest.difficulty === "epic" ? 150 : 30);
+  const splittable = Boolean(onSplit) && !done && !optimistic && estMins >= 60 && quest.questStatus !== "split";
 
   return (
     <motion.li
@@ -112,6 +117,16 @@ export function QuestCard({
                 {formatDay(quest.dueDate)}
               </span>
             )}
+            {quest.estimatedMinutes != null && (
+              <span className="chip tabular-nums" aria-label={`Estimated ${quest.estimatedMinutes} minutes`}>
+                ⏱ {quest.estimatedMinutes}m
+              </span>
+            )}
+            {quest.planContext?.source === "split" && quest.planContext.splitFrom && (
+              <span className="chip" title={`Split from: ${quest.planContext.splitFrom}`}>
+                ✂ part of “{quest.planContext.splitFrom}”
+              </span>
+            )}
             {!done && (
               <span className="ml-auto whitespace-nowrap font-bold text-muted">
                 <span className="text-xp-2">+{reward.xp} XP</span> ·{" "}
@@ -155,6 +170,17 @@ export function QuestCard({
             </>
           ) : (
             <>
+              {splittable && (
+                <button
+                  type="button"
+                  className="btn btn-ghost btn-icon"
+                  onClick={() => onSplit!(quest.id)}
+                  aria-label={`Split quest into smaller steps: ${quest.title}`}
+                  title="Split into smaller quests"
+                >
+                  <span aria-hidden="true">✂</span>
+                </button>
+              )}
               <button
                 type="button"
                 className="btn btn-ghost btn-icon"

@@ -10,6 +10,7 @@ import { BossBattle } from "./BossBattle";
 import { Briefing } from "./Briefing";
 import { CharacterSheet } from "./CharacterSheet";
 import { Chronicle } from "./Chronicle";
+import { DailyPlanStrip } from "./DailyPlanStrip";
 import { GuildContract } from "./GuildContract";
 import { HeroSettings } from "./HeroSettings";
 import { LevelUpOverlay } from "./LevelUpOverlay";
@@ -43,6 +44,8 @@ function GuildInner({ initial }: { initial: Dashboard }) {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [briefingOpen, setBriefingOpen] = useState(false);
   const [newQuestSignal, setNewQuestSignal] = useState(0);
+  const [planSignal, setPlanSignal] = useState(0);
+  const [focusQuestId, setFocusQuestId] = useState<number | null>(null);
   const [tab, setTab] = useState<TabKey>("quests");
   const tabRefs = useRef<Record<TabKey, HTMLButtonElement | null>>({
     quests: null,
@@ -203,6 +206,15 @@ function GuildInner({ initial }: { initial: Dashboard }) {
                   <GuildContract profile={profile} claiming={guild.claimingBounty} onClaim={guild.claimBounty} />
                   <BossBattle profile={profile} claiming={guild.claimingBoss} onClaim={guild.claimBoss} />
                 </div>
+                <DailyPlanStrip
+                  profile={profile}
+                  refreshSignal={planSignal}
+                  toast={toast}
+                  onStartQuest={(id) => {
+                    setFocusQuestId(id);
+                    setTab("sanctum");
+                  }}
+                />
                 <QuestBoard
                   profile={profile}
                   quests={quests}
@@ -212,6 +224,7 @@ function GuildInner({ initial }: { initial: Dashboard }) {
                   onCreate={guild.createQuest}
                   onUpdate={guild.updateQuest}
                   onDelete={guild.deleteQuest}
+                  onSplit={guild.splitQuest}
                   openSignal={newQuestSignal}
                 />
               </div>
@@ -224,6 +237,13 @@ function GuildInner({ initial }: { initial: Dashboard }) {
                 onComplete={guild.completeQuest}
                 onCheckin={guild.checkin}
                 toast={toast}
+                focusQuestId={focusQuestId}
+                onFocusHandled={() => setFocusQuestId(null)}
+                onPlanAccepted={() => {
+                  void guild.refresh();
+                  setPlanSignal((s) => s + 1);
+                  setTab("quests");
+                }}
               />
             )}
             {tab === "armory" && (
