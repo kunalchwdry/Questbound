@@ -11,8 +11,13 @@
     "db:push": "drizzle-kit push",
     "db:migrate": "node scripts/migrate-community.mjs --apply",
     "db:check": "node scripts/migrate-community.mjs --dry-run",
+    "db:migrate:innerloop": "node scripts/migrate-innerloop.mjs --apply",
+    "db:check:innerloop": "node scripts/migrate-innerloop.mjs --dry-run",
     "test:community": "tsx scripts/test-community.ts",
-    "test:browser": "node scripts/test-browser.mjs"
+    "test:innerloop": "tsx scripts/test-innerloop.ts",
+    "test:browser": "node scripts/test-browser.mjs",
+    "sandbox:db": "node scripts/sandbox-db.mjs",
+    "sandbox:seed": "node scripts/sandbox-seed.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",
