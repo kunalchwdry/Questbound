@@ -94,10 +94,39 @@ export async function ensureAppUser(authUser: SupabaseUser): Promise<UserRow> {
 }
 
 /**
+ * DEV-ONLY sandbox bypass (see ADR-024): when QUESTBOUND_DEV_AUTH_BYPASS=1 is
+ * set in a non-production build outside Vercel, skip Supabase session
+ * resolution and impersonate a fixed demo hero so the app can run in a local
+ * sandbox without a Supabase project. The variable is inert everywhere else —
+ * production builds and any Vercel deployment ignore it entirely.
+ */
+const DEV_SANDBOX_AUTH =
+  process.env.QUESTBOUND_DEV_AUTH_BYPASS === "1" &&
+  process.env.NODE_ENV !== "production" &&
+  !process.env.VERCEL;
+
+export const DEV_SANDBOX_AUTH_ID = "00000000-0000-4000-8000-000000000001";
+
+function devSandboxAuthUser(): SupabaseUser {
+  return {
+    id: DEV_SANDBOX_AUTH_ID,
+    email: "hero@questbound.local",
+    aud: "authenticated",
+    created_at: new Date(0).toISOString(),
+    user_metadata: {
+      display_name: "Sandbox Hero",
+      class_key: "knight",
+      timezone: "UTC",
+    },
+  } as unknown as SupabaseUser;
+}
+
+/**
  * Resolve the current app user from the Supabase session, provisioning the
  * profile on first login. Returns null for anonymous requests.
  */
 export async function getSessionUser(): Promise<UserRow | null> {
+  if (DEV_SANDBOX_AUTH) return ensureAppUser(devSandboxAuthUser());
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },

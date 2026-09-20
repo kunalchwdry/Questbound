@@ -21,7 +21,19 @@ const anonKey =
  * token is always re-validated; this guard only prevents rendering the app for
  * obviously anonymous requests.
  */
+/**
+ * DEV-ONLY sandbox bypass (ADR-024): same triple gate as src/lib/auth.ts —
+ * inert in production builds and on Vercel. Lets the app render in a local
+ * sandbox with no Supabase project at all.
+ */
+const DEV_SANDBOX_AUTH =
+  process.env.QUESTBOUND_DEV_AUTH_BYPASS === "1" &&
+  process.env.NODE_ENV !== "production" &&
+  !process.env.VERCEL;
+
 export async function proxy(request: NextRequest) {
+  if (DEV_SANDBOX_AUTH) return NextResponse.next({ request });
+
   const host = request.headers.get("host");
   const cookieOptions = supabaseCookieOptions(host);
 
