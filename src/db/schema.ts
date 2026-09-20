@@ -2,6 +2,7 @@ import {
   boolean,
   index,
   integer,
+  jsonb,
   pgEnum,
   pgTable,
   real,
@@ -33,6 +34,20 @@ export const difficultyEnum = pgEnum("difficulty", [
 ]);
 
 export const questTypeEnum = pgEnum("quest_type", ["daily", "habit", "once"]);
+
+// InnerLoop adaptive engine enums (declared here so Drizzle can introspect them;
+// created idempotently by the 0004_innerloop.sql migration).
+export const energyLevelEnum = pgEnum("energy_level", ["high", "medium", "low"]);
+export const questEventKindEnum = pgEnum("quest_event_kind", [
+  "started",
+  "completed",
+  "abandoned",
+  "postponed",
+  "rescheduled",
+  "split",
+  "scheduled",
+]);
+export const planStatusEnum = pgEnum("plan_status", ["active", "postponed", "split"]);
 
 export const itemCategoryEnum = pgEnum("item_category", [
   "title",
@@ -143,8 +158,20 @@ export const quests = pgTable(
     updatedAt: timestamp("updated_at", { withTimezone: true })
       .notNull()
       .defaultNow(),
+    // ---- InnerLoop adaptive planning (all nullable / default-safe) ----
+    parentQuestId: integer("parent_quest_id"),
+    goalId: integer("goal_id"),
+    estimatedMinutes: integer("estimated_minutes"),
+    scheduledFor: varchar("scheduled_for", { length: 10 }),
+    scheduledOrder: integer("scheduled_order"),
+    planContext: jsonb("plan_context"),
+    questStatus: planStatusEnum("quest_status").notNull().default("active"),
   },
-  (t) => [index("quests_user_idx").on(t.userId)],
+  (t) => [
+    index("quests_user_idx").on(t.userId),
+    index("quests_user_scheduled_idx").on(t.userId, t.scheduledFor),
+    index("quests_parent_idx").on(t.parentQuestId),
+  ],
 ).enableRLS();
 
 // ---------------------------------------------------------------------------
