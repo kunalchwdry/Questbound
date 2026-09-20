@@ -24,6 +24,9 @@ Each record follows: **Context → Decision → Consequences**. Status is *Accep
 | [ADR-018](#adr-018-theming-via-css-custom-properties) | Theming via CSS custom properties |
 | [ADR-019](#adr-019-dark-fantasy-guild-ledger-theme) | Dark-fantasy guild-ledger theme |
 | [ADR-020](#adr-020-borrowed-features-from-other-apps) | Borrowed features from other apps |
+| [ADR-021](#adr-021-innerloop-deterministic-core-llm-periphery) | InnerLoop: deterministic core, LLM periphery |
+| [ADR-022](#adr-022-quest-events-as-a-second-ledger) | quest_events as a second ledger |
+| [ADR-023](#adr-023-plan-state-is-quest-metadata-not-new-tasks) | Plan state is quest metadata, not new tasks |
 
 ---
 
@@ -270,3 +273,57 @@ flowchart LR
 | Woebot / Wysa | Sentiment-aware CBT micro-dialogue | Grounded in the user's actual board; crisis floor (ADR-014) |
 
 **Consequences.** ✅ Familiar patterns lower the learning curve. ✅ Each borrowed mechanic is filtered through ADR-006 (no punishment) and ADR-016 (transparent rewards).
+
+---
+
+## ADR-021: InnerLoop: deterministic core, LLM periphery
+
+**Context.** The adaptive layer (Plan My Day, replanning, sizing) must *always* work — including deployments with `AI_PROVIDER=local` and with all keyless gateways down or rate-limited.
+
+**Decision.** All time budgeting, quest size buckets (Tiny/Small/Medium/Large/Epic), budget packing, rebalance fitting, deadlines, next-quest selection, and every reward number are computed in `src/lib/innerloop/*.ts` with zero model calls. LLMs are invoked only at the edges: **naming** generated quests, **naming** split children, writing the natural-language "why the plan changed" explanation, and polishing the weekly summary. Every LLM call has a deterministic template fallback, and plan sizing is re-enforced server-side after any model answer (`difficulty`/minutes/size come from OUR skeleton, never the model).
+
+**Consequences.**
+- ✅ A hero can plan, split, rebalance and review with no AI gateway at all.
+- ✅ Model failure degrades names/explanations, never correctness.
+- ⚠️ Writing prompts for 3 distinct call sites up-front, but they share one OpenAI-compatible fetch helper shape.
+
+---
+
+## ADR-022: quest_events as a second ledger
+
+**Context.** `completions` proves what the hero *did*. The adaptive engine also needs what they *planned and abandoned* — activity completions never see.
+
+**Decision.** A second append-only ledger, `quest_events` (started / completed / abandoned / postponed / rescheduled / split / scheduled), with FK `quest_id … ON DELETE SET NULL` mirroring ADR-004 so deleting a quest never rewrites behavioural history. Insights (ADR-sized aggregation in `innerloop/behavior.ts`) are computed from `completions + quest_events`, with minimum-sample thresholds before any rate is claimed, and every visible insight carries its observed evidence line.
+
+**Consequences.**
+- ✅ Postponement-rate and best-time-of-day claims are provable from data.
+- ✅ Table grows like completions did; indexed on `(user_id, created_at)`, `(quest_id)`, `(user_id, scheduled_for)`.
+- ⚠️ Writing events is fire-and-forget in the API layer — a lost event costs an insight, never a reward.
+
+---
+
+## ADR-023: Plan state is quest metadata, not new tasks
+
+**Context.** "Plan my day" produces quests. The wrong move would have been creating a parallel `tasks` table beside `quests`.
+
+**Decision.** Scheduling is additive metadata ON `quests` itself: `scheduled_for`, `scheduled_order`, `estimated_minutes`, `parent_quest_id`, `goal_id`, `plan_context (jsonb)`, `quest_status (active|postponed|split)`. Planned work flows through the *existing* completion pipeline, XP/gold/streak engine, Chronicle, boss damage and contracts automatically, because it literally IS a quest. Splitting a quest creates child quest rows pointing back (`parent_quest_id`, `SET NULL` on delete) and marks the parent `quest_status='split'` so it leaves the board.
+
+**Consequences.**
+- ✅ No duplicated reward logic anywhere; ADR-001's server authority untouched.
+- ✅ Migration is 7 nullable columns + 3 small tables (`goals`, `plan_sessions`, `quest_events`) — zero breaking change for existing rows.
+- ⚠️ Old quests simply show no planning chips in the UI (all fields nullable).
+
+---
+
+## ADR-024: Sandbox demo mode is a dev-only auth bypass over embedded Postgres
+
+**Status.** Accepted (2026-09)
+
+**Context.** Reviewers and sandboxes need the full app without a Supabase project or cloud database. Auth (GoTrue JWTs) and Postgres are hard external dependencies; stubbing them per-screen would fork the UI.
+
+**Decision.** One env flag, `QUESTBOUND_DEV_AUTH_BYPASS=1`, makes `getSessionUser()` (`src/lib/auth.ts`) and the edge proxy (`src/proxy.ts`) impersonate a fixed demo hero (`auth_id 00000000-0000-4000-8000-000000000001`) instead of calling Supabase. The gate is triple-locked: the flag must be set **and** `NODE_ENV !== "production"` **and** `!process.env.VERCEL`, so a production build or any Vercel deploy silently ignores it even if the variable leaks. Data comes from `scripts/sandbox-db.mjs` (embedded Postgres under `.cache/sandbox-pg`, full 0000→0004 migration set plus Supabase `anon`/`authenticated`/`auth.uid()` shims so `0003` applies verbatim) and `scripts/sandbox-seed.mjs` (idempotent demo hero with two weeks of history: check-ins, plan, goal, completions, events).
+
+**Consequences.**
+- ✅ One-command demo: `npm run sandbox:db` + `npm run sandbox:seed` + `npm run dev` (with `.env.local` as in the repo's sandbox runs).
+- ✅ Zero production impact: the bypass replaces only where the identity comes from, never the profile/reward pipeline; Vercel ignores the flag outright.
+- ⚠️ Sign-in/up/out screens are unreachable while the flag is on (every page resolves the demo hero) — intended.

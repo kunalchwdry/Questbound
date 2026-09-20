@@ -1,0 +1,42 @@
+{
+  "mode": "dry-run rolled back",
+  "checkedAt": "2026-09-20T14:02:48.211Z",
+  "existingRowsPreserved": true,
+  "tables": {
+    "ai_configs": 2,
+    "checkins": 3,
+    "community_challenge_contributions": 26,
+    "community_challenge_participants": 12,
+    "community_challenges": 3,
+    "community_comments": 3,
+    "community_post_tags": 11,
+    "community_posts": 7,
+    "community_rate_limits": 1,
+    "community_reactions": 3,
+    "community_reports": 0,
+    "community_reputation_transactions": 7,
+    "community_saved_posts": 1,
+    "community_tags": 14,
+    "companion_messages": 14,
+    "completions": 37,
+    "guild_invites": 0,
+    "guild_members": 4,
+    "guild_quest_contributions": 6,
+    "guild_quest_participants": 3,
+    "guild_quests": 1,
+    "guilds": 1,
+    "inventory": 3,
+    "items": 17,
+    "leaderboard_rank_snapshots": 3,
+    "notifications": 11,
+    "quests": 77,
+    "sessions": 0,
+    "user_blocks": 0,
+    "users": 15
+  },
+  "newTables": [
+    "goals",
+    "plan_sessions",
+    "quest_events"
+  ]
+}

@@ -1,6 +1,8 @@
 # ⚜ Questbound — a Life RPG
 
 > **Community extension (September 2026):** The existing Supabase social schema is now connected to `/community`, `/guilds`, `/challenges`, `/leaderboard` and `/heroes/[id]`. See [implementation, migration and verification notes](docs/COMMUNITY_IMPLEMENTATION.md). Use `npm run db:check` / `npm run db:migrate` for this populated database; destructive `db:push` is guarded off.
+>
+> **InnerLoop adaptive engine (September 2026):** Plan My Day, replanning, smart quest sizing and behavioural insights, all additive to the existing schema. Run the migration with `npm run db:check:innerloop` (dry-run) then `npm run db:migrate:innerloop`. See [AUDIT-AND-PLAN.md](AUDIT-AND-PLAN.md).
 
 
 > Every task is a quest. Every day is a chapter.
@@ -147,6 +149,16 @@ failover design.
 - **The Oracle** — emotion-aware agentic companion (details below) that suggests quests you can accept in one tap and shows its reasoning trace.
 - **Mood check-in** — 1–5 mood + note, auto-labelled by the emotion model.
 - **Candle focus timer** — pick a quest, light a 5/15/25/50-minute candle; when it burns out the quest is sealed.
+
+### InnerLoop (adaptive engine)
+
+The layer that makes the board *learn how you actually work*. See [ADR-021…023](DECISIONS.md).
+
+- **Plan My Day** (Sanctum) — give the Oracle a goal, available minutes, energy (high/medium/low) and optional mood + deadlines. It decomposes the day into right-sized real quests (Tiny 5–15 m → Epic 120 m+), with deterministic time budgeting and LLM only for naming.
+- **Daily chapter strip** (Quest Board) — today's planned quests in order, each with a Start button that hands the quest straight to the candle timer (which logs behavioural events).
+- **Adaptive replanning** — “⚖ Rebalance my day” (or when time runs short): deadline-critical quests stay, oversized quests get **split** into smaller siblings, low-priority quests move to tomorrow, and the Oracle writes the *“why did you change my plan?”* explanation into your Sanctum chat.
+- **Smart split** — the ✂ button on any Large/Epic quest breaks it into sequential child quests; the parent leaves the board (`quest_status='split'`).
+- **Behavioural insights** (Chronicle → *How you actually work* / *Weekly execution report*) — completion rate, average quest size, best period of day, postponement rate and personal execution profile, computed only from observed data (with evidence lines, no armchair psychology).
 
 ### Product feel
 
